@@ -1,0 +1,27 @@
+{
+  "name": "poco-groupf-project",
+  "version": "1.0.0",
+  "description": "Group project during PowerCoders bootcamp",
+  "main": "index.html",
+  "scripts": {
+    "build": "npx tailwindcss -i ./static/css/main.css -o ./static/css/style.css -w",
+    "build-p": "postcss ./static/css/main.css -o ./static/css/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olhalesyk/poco_groupF_project.git"
+  },
+  "author": "Olha Lesyk, Vlad Lavrynenko, Fevzi Taskin, Kateryna Dziadok",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olhalesyk/poco_groupF_project/issues"
+  },
+  "homepage": "https://github.com/olhalesyk/poco_groupF_project#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "postcss-import": "^16.1.0",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "tailwindcss": "^3.4.3"
+  }
+}

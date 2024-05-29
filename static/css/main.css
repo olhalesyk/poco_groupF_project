@@ -1,0 +1,115 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  @font-face {
+    font-family: "SF Pro Text";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(../fonts/SF-Pro-Text-Light.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "SF Pro Text";
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/SF-Pro-Text-Regular.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "SF Pro Text";
+    font-style: normal;
+    font-weight: 500;
+    src: url(../fonts/SF-Pro-Text-Medium.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "SF Pro Text";
+    font-style: normal;
+    font-weight: 600;
+    src: url(../fonts/SF-Pro-Text-Semibold.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "SF Pro Text";
+    font-style: normal;
+    font-weight: 700;
+    src: url(../fonts/SF-Pro-Text-Bold.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "SF Pro Text";
+    font-style: normal;
+    font-weight: 900;
+    src: url(../fonts/SF-Pro-Text-Heavy.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: 100;
+    src: url(../fonts/SF-Pro-Display-Ultralight.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: 200;
+    src: url(../fonts/SF-Pro-Display-Thin.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: 300;
+    src: url(../fonts/SF-Pro-Display-Light.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/SF-Pro-Display-Regular.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: 500;
+    src: url(../fonts/SF-Pro-Display-Medium.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: 600;
+    src: url(../fonts/SF-Pro-Display-SemiBold.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: 700;
+    src: url(../fonts/SF-Pro-Display-Bold.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: 800;
+    src: url(../fonts/SF-Pro-Display-Black.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: 900;
+    src: url(../fonts/SF-Pro-Display-Heavy.otf) format("opentype");
+  }
+  /* Base element styles */
+  body {
+    font-family: "SF Pro Text", sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
+    font-family: "SF Pro Display", sans-serif;
+  }
+}
