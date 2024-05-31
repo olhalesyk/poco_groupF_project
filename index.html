@@ -16,21 +16,39 @@
 </head>
 
 <body class="font-body relative" x-data="{ isCartOpen: false, isOpen: false }">
-    <header class="bg-bgdarkgray">
-        <nav class="relative container mx-auto">
-            <div class="px-4 py-4 mx-auto md:flex">
-                <div class="flex items-center justify-between">
-                    <a href="#" class="logo fill-white">
+    <header class="bg-bgdarkgray sticky top-0 w-full">
+        <nav class="container mx-auto">
+            <div class="px-4 py-4 mx-auto flex items-center justify-between">
+                <div class="flex items-center ">
+                    <a href="index.html" class="logo fill-white">
                         <svg class="fill-white" width="22" height="28" viewBox="0 0 14 17" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M13.0729 5.5214C12.9799 5.5937 11.3481 6.5129 11.3481 8.5578C11.3481 10.9229 13.424 11.7595 13.486 11.7801C13.4757 11.8317 13.1555 12.9265 12.3912 14.0419C11.7096 15.0231 10.9969 16.0042 9.91251 16.0042C8.82811 16.0042 8.54921 15.3742 7.29951 15.3742C6.08081 15.3742 5.64701 16.0249 4.65551 16.0249C3.66401 16.0249 2.97201 15.116 2.17681 14.0006C1.25761 12.6889 0.514008 10.6543 0.514008 8.723C0.514008 5.6246 2.52801 3.9824 4.51091 3.9824C5.56441 3.9824 6.44221 4.6744 7.10321 4.6744C7.73321 4.6744 8.71441 3.9411 9.91241 3.9411C10.3669 3.9412 11.9988 3.9826 13.0729 5.5214ZM9.34451 2.6296C9.84021 2.0409 10.1914 1.225 10.1914 0.4091C10.1914 0.2955 10.1811 0.1819 10.1604 0.0888996C9.35481 0.1199 8.39431 0.626 7.81591 1.2973C7.36151 1.8137 6.93801 2.6296 6.93801 3.4559C6.93801 3.5798 6.95871 3.7038 6.96901 3.7451C7.02061 3.7554 7.10331 3.7658 7.18591 3.7658C7.90891 3.7657 8.81771 3.2803 9.34451 2.6296Z" />
                         </svg>
-
-
                     </a>
+                    <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+                    <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full']"
+                        class="absolute top-[76px] h-screen md:h-auto inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-bgdarkgray md:mt-0 md:p-0 md:top-0 md:relative md:opacity-100 md:translate-x-0 md:flex md:items-center md:justify-between">
+                        <div class="flex text-base flex-col px-2 -mx-4 md:items-center md:flex-row md:mx-10 md:py-0">
+                            <a href="#"
+                                class="px-4 py-2 text-white hover:text-activeblue transition-colors duration-300 transform md:mx-2 capitalize">Home</a>
+                            <a href="/#iphone"
+                                class="px-4 py-2 text-white hover:text-activeblue transition-colors duration-300 transform md:mx-2 capitalize">iPhone</a>
+                            <a href="/#macbook"
+                                class="px-4 py-2 text-white hover:text-activeblue transition-colors duration-300 transform md:mx-2 capitalize">MacBook</a>
+                            <a href="/#airpods"
+                                class="px-4 py-2 text-white hover:text-activeblue transition-colors duration-300 transform md:mx-2 capitalize">AirPods
+                                Pro</a>
+                            <a href="/#buy-product"
+                                class="px-4 py-2 text-white hover:text-activeblue transition-colors duration-300 transform md:mx-2 capitalize">Buy
+                                product</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex lg:pr-0 justify-end">
                     <!-- Cart button -->
-                    <div class="cart justify-end flex lg:pr-0 p-6">
+                    <div class="cart pr-4 md:pr-4 ">
                         <button x-cloak @click="isCartOpen = !isCartOpen" class="relative p-3" type="button"
                             aria-label="toggle cart">
                             <svg class="fill-white" width="18" height="20" viewBox="0 0 14 15" fill="none"
@@ -59,31 +77,12 @@
                         </button>
                     </div>
                 </div>
-
-                <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
-                <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 h-screen' : 'opacity-0 -translate-x-full']"
-                    class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-bgdarkgray md:mt-0 md:p-0 md:top-0 md:relative md:opacity-100 md:translate-x-0 md:flex md:items-center md:justify-between">
-                    <div class="flex text-base flex-col px-2 -mx-4 md:items-center md:flex-row md:mx-10 md:py-0">
-                        <a href="#"
-                            class="px-4 py-2 text-white hover:text-lime-300 transition-colors duration-300 transform md:mx-2 capitalize">Home</a>
-                        <a href="/#iphone"
-                            class="px-4 py-2 text-white hover:text-lime-300 transition-colors duration-300 transform md:mx-2 capitalize">iPhone</a>
-                        <a href="/#macbook"
-                            class="px-4 py-2 text-white hover:text-lime-300 transition-colors duration-300 transform md:mx-2 capitalize">MacBook</a>
-                        <a href="/#airpods"
-                            class="px-4 py-2 text-white hover:text-lime-300 transition-colors duration-300 transform md:mx-2 capitalize">AirPods
-                            Pro</a>
-                        <a href="/#buy-product"
-                            class="px-4 py-2 text-white hover:text-lime-300 transition-colors duration-300 transform md:mx-2 capitalize">Buy
-                            product</a>
-                    </div>
-                </div>
             </div>
         </nav>
     </header>
     <main>
         <!-- Cart content -->
-        <div x-cloak :class="[isCartOpen ? 'translate-x-0 opacity-100 h-screen' : 'opacity-0 translate-x-full']"
+        <div x-cloak :class="[isCartOpen ? 'translate-x-0 opacity-100' : 'opacity-0 translate-x-full']"
             class="cartSidebar shadow-inner inset-[0_0_0_auto] shadow-white/25 text-white fixed z-20 w-full sm:w-96 py-8 transition-all duration-300 ease-in-out bg-bgdarkgray grid grid-rows-[50px_minmax(0px,_1fr)_100px]">
             <p class="text-2xl h2 pb-4 px-4">Shopping Cart</p>
             <ul class="cart-items-list overflow-auto py-4">
@@ -189,6 +188,26 @@
                     <button class="w-full py-2 bg-activeblue text-white rounded-md">Checkout</button>
                 </div>
             </div>
+        </div>
+
+        <!-- Hero -->
+        <section class="hero bg-white text-center">
+            <div class="hero-content grid grid-cols-1 auto-cols-fr md:grid-cols-2 gap-4">
+                <div class="hero-text col-span-2">
+                    <h1 class="text-4xl font-bold mt-12 py-4">iPhone 14 Pro</h1>
+                    <p class="text-lg">Big and biger</p>
+                    <button class="text-activeblue py-2 px-4">Learn more</button>
+                    <button class="text-activeblue py-2 px-4">Buy now</button>
+                </div>
+                <div class="hero-left mt-4 col-end-2 place-self-end ">
+                    <img src="static/img/section1-left-hand.png" alt="product-phone-14">
+                </div>
+                <div class="hero-right col-span-1 mt-4">
+                    <img src="static/img/section1-right-hand.png" alt="product-phone-14-pro">
+                </div>
+            </div>
+        </section>
+
     </main>
     <footer>
         <div class="container">
