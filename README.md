@@ -9,5 +9,5 @@ npm install
 ### Running
 
 ```sh
-npm start
+npm run build
 ```
