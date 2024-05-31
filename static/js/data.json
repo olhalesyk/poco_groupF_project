@@ -1,0 +1,67 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "iPhone 14",
+        "category": "Smartphone",
+        "price": 799,
+        "colors": ["Black", "White", "Blue", "Red", "Green"],
+        "storage_options": ["128GB", "256GB", "512GB"],
+        "release_date": "2022-09-16"
+      },
+      {
+        "id": 2,
+        "name": "iPhone 14 Pro", 
+        "category": "Smartphone",
+        "price": 999,
+        "colors": ["Graphite", "Gold", "Silver", "Sierra Blue"],
+        "storage_options": ["128GB", "256GB", "512GB", "1TB"],
+        "release_date": "2022-09-16"
+      },
+      {
+        "id": 3,
+        "name": "MacBook Air",
+        "category": "Laptop",
+        "price": 999,
+        "colors": ["Silver", "Space Gray", "Gold"],
+        "storage_options": ["256GB", "512GB", "1TB"],
+        "release_date": "2020-11-17"
+      },
+      {
+        "id": 4,
+        "name": "MacBook Pro",
+        "category": "Laptop",
+        "price": 1299,
+        "colors": ["Silver", "Space Gray"],
+        "storage_options": ["256GB", "512GB", "1TB", "2TB"],
+        "release_date": "2021-10-18"
+      },
+      {
+        "id": 5,
+        "name": "iPad Pro",
+        "category": "Tablet",
+        "price": 799,
+        "colors": ["Silver", "Space Gray"],
+        "storage_options": ["128GB", "256GB", "512GB", "1TB", "2TB"],
+        "release_date": "2021-05-21"
+      },
+      {
+        "id": 6,
+        "name": "Apple Watch Series 8",
+        "category": "Smartwatch",
+        "price": 399,
+        "colors": ["Midnight", "Starlight", "Green", "Blue", "Red"],
+        "sizes": ["41mm", "45mm"],
+        "release_date": "2022-09-16"
+      },
+      {
+        "id": 7,
+        "name": "AirPods Pro",
+        "category": "Earbuds",
+        "price": 249,
+        "colors": ["White"],
+        "release_date": "2022-10-28"
+      }
+    ]
+  }
+  
