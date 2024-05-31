@@ -18,5 +18,10 @@
     "titleBar.inactiveBackground": "#6f1f5299",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.color": "#6f1f52"
+  "peacock.color": "#6f1f52",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "tailwindCSS.experimental.classRegex": [
+    ["className=\"([^\"]+)\"", "className"]
+  ]
 }

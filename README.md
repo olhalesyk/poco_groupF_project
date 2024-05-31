@@ -6,8 +6,14 @@
 npm install
 ```
 
-### Running
+### Running build script to compile CSS
 
 ```sh
 npm run build
+```
+
+### Running tailwind classes formatting script:
+
+```sh
+npm run format
 ```

@@ -97,6 +97,7 @@
   /* Base element styles */
   body {
     font-family: "SF Pro Text", sans-serif;
+    font-weight: 400;
   }
   h1,
   h2,
@@ -112,4 +113,7 @@
   .h6 {
     font-family: "SF Pro Display", sans-serif;
   }
+}
+.cart-items-list .cart-item:nth-child(odd) {
+  background-color: #000;
 }
