@@ -4,8 +4,9 @@
   "description": "Group project during PowerCoders bootcamp",
   "main": "index.html",
   "scripts": {
-    "build": "npx tailwindcss -i ./static/css/main.css -o ./static/css/style.css -w",
-    "build-p": "postcss ./static/css/main.css -o ./static/css/style.css -w"
+    "build": "npx tailwindcss ./static/css/main.css -o ./static/css/style.css -w",
+    "build-p": "npx postcss ./static/css/main.css -o ./static/css/style.css -w",
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
     "postcss-import": "^16.1.0",
+    "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "tailwindcss": "^3.4.3"
   }

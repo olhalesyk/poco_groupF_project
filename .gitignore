@@ -1,2 +1,13 @@
+
 node_modules
+
+# Ignore .DS_Store files
+.DS_Store
+
+# Ignore .log files
+*.log
+
+# Ignore folders
+node_modules
+
 .vscode

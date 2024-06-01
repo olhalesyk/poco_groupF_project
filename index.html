@@ -1,19 +1,507 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechnoStore</title>
-    <!-- Custom styles -->
-    <link rel="stylesheet" href="static/css/style.css">
-    <script defer src="https://cdn.tailwindcss.com"></script>
-    <!-- Custom scripts -->
-    <script defer src="static/js/script.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechnoStore</title>
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="static/css/style.css" />
+  <!-- Scripts -->
+  <script defer src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.10/dist/cdn.min.js"></script>
+  <!-- Custom scripts -->
+  <script defer src="static/js/script.js"></script>
 </head>
 
-<body class="font-body">    
-    <h1 class="font-display text-2xl font-semibold">This is a tech Presentation of Apple Product.</h1>
+<body class="relative font-display" x-data="{ isCartOpen: false, isOpen: false }">
+  <header class="sticky top-0 w-full bg-bgdarkgray">
+    <nav class="container mx-auto">
+      <div class="mx-auto flex items-center justify-between px-4 py-4">
+        <div class="flex items-center">
+          <a href="index.html" class="logo fill-white">
+            <svg class="fill-white" width="22" height="28" viewBox="0 0 14 17" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M13.0729 5.5214C12.9799 5.5937 11.3481 6.5129 11.3481 8.5578C11.3481 10.9229 13.424 11.7595 13.486 11.7801C13.4757 11.8317 13.1555 12.9265 12.3912 14.0419C11.7096 15.0231 10.9969 16.0042 9.91251 16.0042C8.82811 16.0042 8.54921 15.3742 7.29951 15.3742C6.08081 15.3742 5.64701 16.0249 4.65551 16.0249C3.66401 16.0249 2.97201 15.116 2.17681 14.0006C1.25761 12.6889 0.514008 10.6543 0.514008 8.723C0.514008 5.6246 2.52801 3.9824 4.51091 3.9824C5.56441 3.9824 6.44221 4.6744 7.10321 4.6744C7.73321 4.6744 8.71441 3.9411 9.91241 3.9411C10.3669 3.9412 11.9988 3.9826 13.0729 5.5214ZM9.34451 2.6296C9.84021 2.0409 10.1914 1.225 10.1914 0.4091C10.1914 0.2955 10.1811 0.1819 10.1604 0.0888996C9.35481 0.1199 8.39431 0.626 7.81591 1.2973C7.36151 1.8137 6.93801 2.6296 6.93801 3.4559C6.93801 3.5798 6.95871 3.7038 6.96901 3.7451C7.02061 3.7554 7.10331 3.7658 7.18591 3.7658C7.90891 3.7657 8.81771 3.2803 9.34451 2.6296Z" />
+            </svg>
+          </a>
+          <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+          <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full']"
+            class="absolute inset-x-0 top-[76px] z-20 h-screen w-full bg-bgdarkgray px-6 py-4 transition-all duration-300 ease-in-out md:relative md:top-0 md:mt-0 md:flex md:h-auto md:translate-x-0 md:items-center md:justify-between md:p-0 md:opacity-100">
+            <div class="-mx-4 flex flex-col px-2 text-base md:mx-10 md:flex-row md:items-center md:py-0">
+              <a href="#"
+                class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">Home</a>
+              <a href="/#iphone"
+                class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">iPhone</a>
+              <a href="/#macbook"
+                class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">MacBook</a>
+              <a href="/#airpods"
+                class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">AirPods
+                Pro</a>
+              <a href="/#buy-product"
+                class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">Buy
+                product</a>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-end lg:pr-0">
+          <!-- Cart button -->
+          <div class="cart pr-4 md:pr-4">
+            <button x-cloak @click="isCartOpen = !isCartOpen" class="relative p-3" type="button"
+              aria-label="toggle cart">
+              <svg class="fill-white" width="18" height="20" viewBox="0 0 14 15" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12.9688 12.9C12.9688 13.5 12.4688 14 11.8687 14H3.06875C2.46875 14 1.96875 13.5 1.96875 12.9V5C1.96875 4.5 2.46875 4 3.06875 4H11.9688C12.5688 4 13.0688 4.5 13.0688 5.1V12.9H12.9688ZM7.46875 1C8.66875 1 9.56875 1.9 9.76875 3H5.16875C5.36875 1.9 6.26875 1 7.46875 1ZM11.8687 3H10.7688C10.5688 1.3 9.16875 0 7.46875 0C5.76875 0 4.36875 1.3 4.16875 3H3.06875C1.86875 3 0.96875 3.9 0.96875 5.1V13C0.96875 14.1 1.86875 15 3.06875 15H11.9688C13.0688 15 14.0688 14.1 14.0688 12.9V5C13.9688 3.9 13.0687 3 11.8687 3Z" />
+              </svg>
+              <span
+                class="text-white absolute -right-1 top-1/2 inline-flex h-5 min-w-5 justify-center rounded-full bg-activeblue p-1 align-middle text-[.7rem] leading-none">0</span>
+            </button>
+          </div>
+          <!-- Mobile menu button -->
+          <div class="flex md:hidden">
+            <button x-cloak @click="isOpen = !isOpen" type="button"
+              class="text-white hover:text-white focus:text-white focus:outline-none" aria-label="toggle menu">
+              <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
+              </svg>
+
+              <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <!-- Cart content -->
+    <div x-cloak :class="[isCartOpen ? 'translate-x-0 opacity-100' : 'opacity-0 translate-x-full']"
+      class="cartSidebar opacity-0 shadow-white/25 text-white bg-black fixed inset-[0_0_0_auto] z-20 grid w-full grid-rows-[50px_minmax(0px,_1fr)_100px] py-8 shadow-inner transition-all duration-300 ease-in-out sm:w-96">
+      <p class="h2 px-4 pb-4 text-2xl">Shopping Cart</p>
+      <ul class="cart-items-list overflow-auto py-4">
+        <li class="cart-item grid grid-cols-[30px_70px_120px_1fr] items-center gap-3 p-4 text-center">
+          <button
+            class="remove-button hover:text-white inline-flex h-5 w-5 items-center justify-center rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div class="image max-w-16 rounded-md bg-bglightgray p-3">
+            <img src="static/img/product-phone-14-pro.jpg" alt="product-phone-14-pro" />
+          </div>
+          <div class="product-info flex flex-col gap-2 text-left">
+            <div class="name">iPhone 14 Pro</div>
+            <div class="price">$0.00</div>
+          </div>
+          <div class="quantity">
+            <button
+              class="quantity-button-minus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+              -
+            </button>
+            <span class="inline-block h-5 min-w-5 rounded-sm px-1">1</span>
+            <button
+              class="quantity-button-plus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+              +
+            </button>
+          </div>
+        </li>
+        <li class="cart-item grid grid-cols-[30px_70px_120px_1fr] items-center gap-3 p-4 text-center">
+          <button
+            class="remove-button hover:text-white inline-flex h-5 w-5 items-center justify-center rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div class="image max-w-16 rounded-md bg-bglightgray p-3">
+            <img src="static/img/product-phone-14-pro.jpg" alt="product-phone-14-pro" />
+          </div>
+          <div class="product-info flex flex-col gap-2 text-left">
+            <div class="name">iPhone 14 Pro</div>
+            <div class="price">$0.00</div>
+          </div>
+          <div class="quantity">
+            <button
+              class="quantity-button-minus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+              -
+            </button>
+            <span class="inline-block h-5 min-w-5 rounded-sm px-1">1</span>
+            <button
+              class="quantity-button-plus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+              +
+            </button>
+          </div>
+        </li>
+        <li class="cart-item grid grid-cols-[30px_70px_120px_1fr] items-center gap-3 p-4 text-center">
+          <button
+            class="remove-button hover:text-white inline-flex h-5 w-5 items-center justify-center rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div class="image max-w-16 rounded-md bg-bglightgray p-3">
+            <img src="static/img/product-phone-14-pro.jpg" alt="product-phone-14-pro" />
+          </div>
+          <div class="product-info flex flex-col gap-2 text-left">
+            <div class="name">iPhone 14 Pro</div>
+            <div class="price">$0.00</div>
+          </div>
+          <div class="quantity">
+            <button
+              class="quantity-button-minus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+              -
+            </button>
+            <span class="inline-block h-5 min-w-5 rounded-sm px-1">1</span>
+            <button
+              class="quantity-button-plus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+              +
+            </button>
+          </div>
+        </li>
+        <li class="cart-item grid grid-cols-[30px_70px_120px_1fr] items-center gap-3 p-4 text-center">
+          <button
+            class="remove-button hover:text-white inline-flex h-5 w-5 items-center justify-center rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div class="image max-w-16 rounded-md bg-bglightgray p-3">
+            <img src="static/img/product-phone-14-pro.jpg" alt="product-phone-14-pro" />
+          </div>
+          <div class="product-info flex flex-col gap-2 text-left">
+            <div class="name">iPhone 14 Pro</div>
+            <div class="price">$0.00</div>
+          </div>
+          <div class="quantity">
+            <button
+              class="quantity-button-minus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+              -
+            </button>
+            <span class="inline-block h-5 min-w-5 rounded-sm px-1">1</span>
+            <button
+              class="quantity-button-plus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+              +
+            </button>
+          </div>
+        </li>
+      </ul>
+      <div class="cart-footer place-content-end px-4">
+        <div class="flex justify-between py-4">
+          <p>Total</p>
+          <p>$0.00</p>
+        </div>
+        <div class="cart-buttons flex cursor-pointer justify-between space-x-4 align-middle">
+          <button x-cloak @click="isCartOpen = !isCartOpen" class="bg-white w-full rounded-md py-2 text-primary"
+            type="button" aria-label="toggle cart">
+            Close
+          </button>
+          <button class="text-white w-full rounded-md bg-activeblue py-2">
+            Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1 - iPhone -->
+    <section class="bg-white text-center" id="iphone">
+      <div class="grid auto-cols-fr grid-cols-1 gap-4 md:grid-cols-2">
+        <div class="col-span-2">
+          <h1 class="mt-12 py-4 text-4xl font-bold">iPhone 14 Pro</h1>
+          <p class="text-lg font-normal">Big and biger</p>
+          <button class="px-4 py-2 text-activeblue">Learn more</button>
+          <button class="px-4 py-2 text-activeblue">Buy now</button>
+        </div>
+        <div class="hero-left col-end-2 mt-4 place-self-end">
+          <img src="static/img/section1-left-hand.png" alt="product-phone-14" />
+        </div>
+        <div class="hero-right col-span-1 mt-4 place-content-end">
+          <img src="static/img/section1-right-hand.png" alt="product-phone-14-pro" />
+        </div>
+      </div>
+    </section>
+    <!-- Section 2 - MacBook -->
+    <section class="bg-black text-center" id="macbook">
+      <div class="grid justify-center">
+        <div class="text-white">
+          <h2 class="animate-charcter mt-12 py-4 text-4xl font-bold">
+            MacBook Pro
+          </h2>
+          <p class="text-lg font-normal">Pro. Beyond.</p>
+          <button class="px-4 py-2 text-activeblue">Learn more</button>
+          <button class="px-4 py-2 text-activeblue">Buy now</button>
+        </div>
+        <div class="hero-left mt-4">
+          <img src="static/img/section2-MacBook.jpeg" alt="product-phone-14" />
+        </div>
+      </div>
+    </section>
+    <!-- Section 3 - Watch -->
+    <section class="text-center" id="watch">
+      <div class="grid justify-center px-4">
+        <div class="text-primary">
+          <h2 class="mt-14 py-2 text-4xl font-bold inline-flex gap-2 items-end leading-none">
+            <svg class="w-8 h-10 fill-black" viewBox="0 0 14 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M13.0729 5.5214C12.9799 5.5937 11.3481 6.5129 11.3481 8.5578C11.3481 10.9229 13.424 11.7595 13.486 11.7801C13.4757 11.8317 13.1555 12.9265 12.3912 14.0419C11.7096 15.0231 10.9969 16.0042 9.91251 16.0042C8.82811 16.0042 8.54921 15.3742 7.29951 15.3742C6.08081 15.3742 5.64701 16.0249 4.65551 16.0249C3.66401 16.0249 2.97201 15.116 2.17681 14.0006C1.25761 12.6889 0.514008 10.6543 0.514008 8.723C0.514008 5.6246 2.52801 3.9824 4.51091 3.9824C5.56441 3.9824 6.44221 4.6744 7.10321 4.6744C7.73321 4.6744 8.71441 3.9411 9.91241 3.9411C10.3669 3.9412 11.9988 3.9826 13.0729 5.5214ZM9.34451 2.6296C9.84021 2.0409 10.1914 1.225 10.1914 0.4091C10.1914 0.2955 10.1811 0.1819 10.1604 0.0888996C9.35481 0.1199 8.39431 0.626 7.81591 1.2973C7.36151 1.8137 6.93801 2.6296 6.93801 3.4559C6.93801 3.5798 6.95871 3.7038 6.96901 3.7451C7.02061 3.7554 7.10331 3.7658 7.18591 3.7658C7.90891 3.7657 8.81771 3.2803 9.34451 2.6296Z" />
+            </svg>
+            <span>Watch</span>
+          </h2>
+
+          <p class="text-lg font-medium uppercase text-[#FD6A13] pb-2 tracking-widest">Ultra</p>
+          <p class="text-lg font-normal">Adventure awaits.</p>
+          <button class="px-4 py-2 text-activeblue">Learn more</button>
+          <button class="px-4 py-2 text-activeblue">Buy now</button>
+        </div>
+        <div class="hero-left mt-4">
+          <img class="max-w-7xl max-h-80 w-full" src="static/img/product-phone-14-pro-few.jpg" alt="product-phone-14" />
+        </div>
+      </div>
+    </section>
+    <!-- Section 4 -->
+    <section class="text-center grid grid-cols-1 md:grid-cols-2 gap-2 px-2 mb-2" id="">
+      <div class="grid justify-center bg-black px-4">
+        <div class="text-white">
+          <h2 class="mt-14 py-2 text-3xl font-bold inline-flex gap-2 items-end leading-none">
+            <svg class="w-7 h-9 fill-white" viewBox="0 0 14 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M13.0729 5.5214C12.9799 5.5937 11.3481 6.5129 11.3481 8.5578C11.3481 10.9229 13.424 11.7595 13.486 11.7801C13.4757 11.8317 13.1555 12.9265 12.3912 14.0419C11.7096 15.0231 10.9969 16.0042 9.91251 16.0042C8.82811 16.0042 8.54921 15.3742 7.29951 15.3742C6.08081 15.3742 5.64701 16.0249 4.65551 16.0249C3.66401 16.0249 2.97201 15.116 2.17681 14.0006C1.25761 12.6889 0.514008 10.6543 0.514008 8.723C0.514008 5.6246 2.52801 3.9824 4.51091 3.9824C5.56441 3.9824 6.44221 4.6744 7.10321 4.6744C7.73321 4.6744 8.71441 3.9411 9.91241 3.9411C10.3669 3.9412 11.9988 3.9826 13.0729 5.5214ZM9.34451 2.6296C9.84021 2.0409 10.1914 1.225 10.1914 0.4091C10.1914 0.2955 10.1811 0.1819 10.1604 0.0888996C9.35481 0.1199 8.39431 0.626 7.81591 1.2973C7.36151 1.8137 6.93801 2.6296 6.93801 3.4559C6.93801 3.5798 6.95871 3.7038 6.96901 3.7451C7.02061 3.7554 7.10331 3.7658 7.18591 3.7658C7.90891 3.7657 8.81771 3.2803 9.34451 2.6296Z" />
+            </svg>
+            <span>Watch</span>
+          </h2>
+
+          <p class="text-sm font-medium uppercase text-[#C42025] pb-2 tracking-widest">Series 8</p>
+          <p class="text-lg font-normal">A healthy leap ahead.</p>
+          <button class="px-4 py-2 text-activeblue">Learn more</button>
+          <button class="px-4 py-2 text-activeblue">Buy now</button>
+        </div>
+        <div class="hero-left mt-4">
+          <img class="max-w-7xl max-h-52 w-full" src="static/img/product-phone-14-pro-few.jpg" alt="product-phone-14" />
+        </div>
+      </div>
+      <div class="grid justify-center bg-black px-4">
+        <div class="text-white">
+          <h2 class="mt-14 py-2 text-3xl font-bold leading-none"> AirPods Pro
+          </h2>
+          <p class="text-lg font-normal">Rebuilt from the sound up.</p>
+          <button class="px-4 py-2 text-activeblue">Learn more</button>
+          <button class="px-4 py-2 text-activeblue">Buy now</button>
+        </div>
+        <div class="hero-left mt-4">
+          <img class="max-w-7xl max-h-52 w-full" src="static/img/product-phone-14-pro-few.jpg" alt="product-phone-14" />
+        </div>
+      </div>
+    </section>
+    <!-- Section 5 -->
+    <section class="text-center grid grid-cols-1 md:grid-cols-2 gap-2 px-2 mb-2" id="">
+      <div class="grid justify-center bg-bglightgray px-4">
+        <div class="text-primary">
+          <h2 class="mt-14 py-2 text-3xl font-bold inline-flex gap-2 items-end leading-none">
+            <svg class="w-7 h-9 fill-primary" viewBox="0 0 14 17" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M13.0729 5.5214C12.9799 5.5937 11.3481 6.5129 11.3481 8.5578C11.3481 10.9229 13.424 11.7595 13.486 11.7801C13.4757 11.8317 13.1555 12.9265 12.3912 14.0419C11.7096 15.0231 10.9969 16.0042 9.91251 16.0042C8.82811 16.0042 8.54921 15.3742 7.29951 15.3742C6.08081 15.3742 5.64701 16.0249 4.65551 16.0249C3.66401 16.0249 2.97201 15.116 2.17681 14.0006C1.25761 12.6889 0.514008 10.6543 0.514008 8.723C0.514008 5.6246 2.52801 3.9824 4.51091 3.9824C5.56441 3.9824 6.44221 4.6744 7.10321 4.6744C7.73321 4.6744 8.71441 3.9411 9.91241 3.9411C10.3669 3.9412 11.9988 3.9826 13.0729 5.5214ZM9.34451 2.6296C9.84021 2.0409 10.1914 1.225 10.1914 0.4091C10.1914 0.2955 10.1811 0.1819 10.1604 0.0888996C9.35481 0.1199 8.39431 0.626 7.81591 1.2973C7.36151 1.8137 6.93801 2.6296 6.93801 3.4559C6.93801 3.5798 6.95871 3.7038 6.96901 3.7451C7.02061 3.7554 7.10331 3.7658 7.18591 3.7658C7.90891 3.7657 8.81771 3.2803 9.34451 2.6296Z" />
+            </svg>
+            <span>Watch</span>
+          </h2>
+
+          <p class="text-sm font-medium uppercase text-[#C42025] pb-2 tracking-widest">Series 8</p>
+          <p class="text-lg font-normal">A great deal to love.</p>
+          <button class="px-4 py-2 text-activeblue">Learn more</button>
+          <button class="px-4 py-2 text-activeblue">Buy now</button>
+        </div>
+        <div class="hero-left mt-4">
+          <img class="max-w-7xl max-h-52 w-full" src="static/img/product-phone-14-pro-few.jpg" alt="product-phone-14" />
+        </div>
+      </div>
+      <div class="grid justify-center bg-bglightgray px-4">
+        <div class="text-primary">
+          <h2 class="mt-14 py-2 text-3xl font-bold inline-flex gap-2 items-end leading-none">
+            <svg class="w-7 h-9 fill-primary" viewBox="0 0 14 17" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M13.0729 5.5214C12.9799 5.5937 11.3481 6.5129 11.3481 8.5578C11.3481 10.9229 13.424 11.7595 13.486 11.7801C13.4757 11.8317 13.1555 12.9265 12.3912 14.0419C11.7096 15.0231 10.9969 16.0042 9.91251 16.0042C8.82811 16.0042 8.54921 15.3742 7.29951 15.3742C6.08081 15.3742 5.64701 16.0249 4.65551 16.0249C3.66401 16.0249 2.97201 15.116 2.17681 14.0006C1.25761 12.6889 0.514008 10.6543 0.514008 8.723C0.514008 5.6246 2.52801 3.9824 4.51091 3.9824C5.56441 3.9824 6.44221 4.6744 7.10321 4.6744C7.73321 4.6744 8.71441 3.9411 9.91241 3.9411C10.3669 3.9412 11.9988 3.9826 13.0729 5.5214ZM9.34451 2.6296C9.84021 2.0409 10.1914 1.225 10.1914 0.4091C10.1914 0.2955 10.1811 0.1819 10.1604 0.0888996C9.35481 0.1199 8.39431 0.626 7.81591 1.2973C7.36151 1.8137 6.93801 2.6296 6.93801 3.4559C6.93801 3.5798 6.95871 3.7038 6.96901 3.7451C7.02061 3.7554 7.10331 3.7658 7.18591 3.7658C7.90891 3.7657 8.81771 3.2803 9.34451 2.6296Z" />
+            </svg>
+            <span>Fitness+</span>
+          </h2>
+          <p class="text-lg font-normal max-w-48 mx-auto">Fitness for everyone. Now all you need is iPhone.</p>
+          <button class="px-4 py-2 text-activeblue">Learn more</button>
+          <button class="px-4 py-2 text-activeblue">Buy now</button>
+        </div>
+        <div class="hero-left mt-4">
+          <img class="max-w-7xl max-h-52 w-full" src="static/img/product-phone-14-pro-few.jpg" alt="product-phone-14" />
+        </div>
+      </div>
+    </section>
+    <!-- Section 6 -->
+    <section class="text-center grid grid-cols-1 md:grid-cols-2 gap-2 px-2 mb-2" id="">
+      <div class="grid justify-center bg-[#FBFBFD] px-4">
+        <div class="text-primary">
+          <h2 class="mt-14 py-2 text-3xl font-bold inline-flex gap-2 items-end leading-none">
+            MacBook Air </h2>
+          <p class="text-lg font-normal flex items-center justify-center gap-2">Supercharged by <img
+              src="static/img/chip.svg" alt="chip"></p>
+          <button class="px-4 py-2 text-activeblue">Learn more</button>
+          <button class="px-4 py-2 text-activeblue">Buy now</button>
+        </div>
+        <div class="hero-left mt-4">
+          <img class="max-w-7xl max-h-52 w-full" src="static/img/product-phone-14-pro-few.jpg" alt="product-phone-14" />
+        </div>
+      </div>
+      <div class="grid justify-center bg-[#FBFBFD] px-4">
+        <div class="text-primary">
+          <h2 class="mt-14 py-2 text-3xl font-bold inline-flex gap-2 items-end leading-none">
+            <svg class="w-7 h-9 fill-primary" viewBox="0 0 14 17" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M13.0729 5.5214C12.9799 5.5937 11.3481 6.5129 11.3481 8.5578C11.3481 10.9229 13.424 11.7595 13.486 11.7801C13.4757 11.8317 13.1555 12.9265 12.3912 14.0419C11.7096 15.0231 10.9969 16.0042 9.91251 16.0042C8.82811 16.0042 8.54921 15.3742 7.29951 15.3742C6.08081 15.3742 5.64701 16.0249 4.65551 16.0249C3.66401 16.0249 2.97201 15.116 2.17681 14.0006C1.25761 12.6889 0.514008 10.6543 0.514008 8.723C0.514008 5.6246 2.52801 3.9824 4.51091 3.9824C5.56441 3.9824 6.44221 4.6744 7.10321 4.6744C7.73321 4.6744 8.71441 3.9411 9.91241 3.9411C10.3669 3.9412 11.9988 3.9826 13.0729 5.5214ZM9.34451 2.6296C9.84021 2.0409 10.1914 1.225 10.1914 0.4091C10.1914 0.2955 10.1811 0.1819 10.1604 0.0888996C9.35481 0.1199 8.39431 0.626 7.81591 1.2973C7.36151 1.8137 6.93801 2.6296 6.93801 3.4559C6.93801 3.5798 6.95871 3.7038 6.96901 3.7451C7.02061 3.7554 7.10331 3.7658 7.18591 3.7658C7.90891 3.7657 8.81771 3.2803 9.34451 2.6296Z" />
+            </svg>
+            <span>Card</span>
+          </h2>
+          <p class="text-lg font-normal max-w-52 mx-auto">Get up to 3% Daily Cash back with every purchase.</p>
+          <button class="px-4 py-2 text-activeblue">Learn more</button>
+          <button class="px-4 py-2 text-activeblue">Buy now</button>
+        </div>
+        <div class="hero-left mt-4">
+          <img class="max-w-7xl max-h-52 w-full" src="static/img/product-phone-14-pro-few.jpg" alt="product-phone-14" />
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-bglightgray px-4 pb-6 text-lowcontrast">
+    <div class="container mx-auto border-b border-[#D2D2D7] py-6">
+      <p class="pb-2">
+        1. iPhone 8 or later users may subscribe without an Apple Watch later
+        this fall.
+      </p>
+      <p class="pb-2">A subscription is required for Apple Fitness+.</p>
+      <p class="pb-2">
+        Apple Fitness+ is not available in all countries or regions.
+      </p>
+      <p class="pb-2">
+        The Apple One free trial includes only services that you are not
+        currently using through a free trial or a subscription.
+      </p>
+      <p class="pb-2">
+        Plan automatically renews after trial until cancelled. Restrictions
+        and other terms apply.
+      </p>
+    </div>
+    <div class="container mx-auto grid grid-cols-2 py-2 sm:grid-cols-3 lg:grid-cols-5">
+      <div class="mt-6 text-sm">
+        <p class="mb-3 font-bold text-primary">Shop and Learn</p>
+        <ul class="text-body">
+          <li class="mb-2"><a href="#">Store</a></li>
+          <li class="mb-2"><a href="#">Mac</a></li>
+          <li class="mb-2"><a href="#">iPad</a></li>
+          <li class="mb-2"><a href="#">iPhone</a></li>
+          <li class="mb-2"><a href="#">Watch</a></li>
+          <li class="mb-2"><a href="#">AirPods</a></li>
+          <li class="mb-2"><a href="#">TV & Home</a></li>
+          <li class="mb-2"><a href="#">Music</a></li>
+          <li class="mb-2"><a href="#">Gift Cards</a></li>
+        </ul>
+      </div>
+      <div class="mt-6 text-sm">
+        <p class="mb-3 font-bold text-primary">Services</p>
+        <ul class="mb-6 text-body">
+          <li class="mb-2"><a href="#">Apple Music</a></li>
+          <li class="mb-2"><a href="#">Apple TV+</a></li>
+          <li class="mb-2"><a href="#">Apple Fitness+</a></li>
+          <li class="mb-2"><a href="#">Apple News+</a></li>
+          <li class="mb-2"><a href="#">Apple Arcade</a></li>
+          <li class="mb-2"><a href="#">iCloud</a></li>
+          <li class="mb-2"><a href="#">Apple One</a></li>
+          <li class="mb-2"><a href="#">Apple Card</a></li>
+          <li class="mb-2"><a href="#">Apple Books</a></li>
+        </ul>
+        <p class="mb-3 font-bold text-primary">Account</p>
+        <ul class="text-body">
+          <li class="mb-2"><a href="#">Manage Your Apple ID</a></li>
+          <li class="mb-2"><a href="#">Apple Store Account</a></li>
+          <li class="mb-2"><a href="#">iCloud.com</a></li>
+        </ul>
+      </div>
+      <div class="mt-6 text-sm">
+        <p class="mb-3 font-bold text-primary">Apple Store</p>
+        <ul class="text-body">
+          <li class="mb-2"><a href="#">Find a Store</a></li>
+          <li class="mb-2"><a href="#">Shop Online</a></li>
+          <li class="mb-2"><a href="#">Genius Bar</a></li>
+          <li class="mb-2"><a href="#">Today at Apple</a></li>
+          <li class="mb-2"><a href="#">Apple Camp</a></li>
+          <li class="mb-2"><a href="#">Apple Store App</a></li>
+          <li class="mb-2"><a href="#">Refurbished and Clearance</a></li>
+          <li class="mb-2"><a href="#">Financing</a></li>
+          <li class="mb-2"><a href="#">Apple Trade In</a></li>
+          <li class="mb-2"><a href="#">Order Status</a></li>
+          <li class="mb-2"><a href="#">Shopping Help</a></li>
+        </ul>
+      </div>
+      <div class="mt-6 text-sm">
+        <p class="mb-3 font-bold text-primary">For Business</p>
+        <ul class="mb-6 text-body">
+          <li class="mb-2"><a href="#">Apple and Business</a></li>
+          <li class="mb-2"><a href="#">Shop for Business</a></li>
+        </ul>
+        <p class="mb-3 font-bold text-primary">For Education</p>
+        <ul class="mb-6 text-body">
+          <li class="mb-2"><a href="#">Apple and Education</a></li>
+          <li class="mb-2"><a href="#">Shop for K-12</a></li>
+          <li class="mb-2"><a href="#">Shop for College</a></li>
+        </ul>
+        <p class="mb-3 font-bold text-primary">For Healthcare</p>
+        <ul class="mb-6 text-body">
+          <li class="mb-2"><a href="#">Apple in Healthcare</a></li>
+          <li class="mb-2"><a href="#">Health on Apple Watch</a></li>
+          <li class="mb-2"><a href="#">Health Records on iPhone</a></li>
+        </ul>
+        <p class="mb-3 font-bold text-primary">For Government</p>
+        <ul class="text-body">
+          <li class="mb-2"><a href="#">Shop for Government</a></li>
+          <li class="mb-2"><a href="#">Shop for Veterans and Military</a></li>
+        </ul>
+      </div>
+      <div class="mt-6 text-sm">
+        <p class="mb-3 font-bold text-primary">Apple Values</p>
+        <ul class="mb-6 text-body">
+          <li class="mb-2"><a href="#">Accessibility</a></li>
+          <li class="mb-2"><a href="#">Education</a></li>
+          <li class="mb-2"><a href="#">Environment</a></li>
+          <li class="mb-2"><a href="#">Inclusion and Diversity</a></li>
+          <li class="mb-2"><a href="#">Privacy</a></li>
+          <li class="mb-2"><a href="#">Supplier Responsibility</a></li>
+        </ul>
+        <p class="mb-3 font-bold text-primary">About Apple</p>
+        <ul class="text-body">
+          <li class="mb-2"><a href="#">Newsroom</a></li>
+          <li class="mb-2"><a href="#">Apple Leadership</a></li>
+          <li class="mb-2"><a href="#">Career Opportunities</a></li>
+          <li class="mb-2"><a href="#">Investors</a></li>
+          <li class="mb-2"><a href="#">Events</a></li>
+          <li class="mb-2"><a href="#">Contact Apple</a></li>
+        </ul>
+      </div>
+      <p class="pt-6 lg:col-span-5">
+        More ways to shop:
+        <a href="#" class="text-activeblue hover:underline">Find an Apple Store</a>
+        or
+        <a href="#" class="text-activeblue hover:underline">other retailer</a>
+        near you. Or call 1-800-MY-APPLE.
+      </p>
+    </div>
+    <div class="container mx-auto flex flex-col justify-between gap-4 border-t border-[#D2D2D7] py-2 lg:flex-row">
+      <span>Copyright © 2024 Group F. All rights reserved.</span>
+      <span class="grid grid-cols-2 items-center gap-4 text-body sm:grid-cols-3 md:inline-flex"><a href="#">Privacy
+          Policy</a><a href="#">Terms of Use</a><a href="#">Sales and Refunds</a><a href="#">Legal</a><a href="#">Site
+          Map</a></span>
+    </div>
+  </footer>
 </body>
 
 </html>
