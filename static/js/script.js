@@ -26,7 +26,7 @@ let cartTag = document.querySelector("#cart_container");
 
 //test:
 // clearCart();
-hideCartItems();
+// hideCartItems();
 
 let buyItemsTag = document.getElementsByClassName("buy"); 
 // console.log(buyItemsTag.length);
@@ -40,41 +40,65 @@ Object.values(buyItemsTag).forEach(element => {
   let iphone = document.querySelector("#iphone"); 
   console.log(iphone);
   iphone.style.visibility = "visible";
+
+  addItemToCart();
   });
 });
 
 
-let localTest = "";
+//listeners:
+document.querySelector("#iphone-items-reset").addEventListener("click", () => {
+  resetItems();
+});
 
-saveToLocalStorage();
-getTitle();
+document.querySelector("#iphone-plus").addEventListener("click", () => {
+  addItemToCart();
+});
 
-
-function saveToLocalStorage() {
-    let title = document.querySelector("h1").textContent;
-    localStorage.setItem("title", title);
-    // alert("Title is saved.");
-}
-
-function getTitle() {
-    let getLocalTitle = localStorage.getItem("title");
-    // alert(getLocalTitle);
-}
+document.querySelector("#iphone-minus").addEventListener("click", () => {
+  minutItemFromCart();
+});
 
 
 function addItemToCart() { //item
-  
-  cartList.push("Hello");
+  console.log("ADD the item");
+  console.log(Object.values(allProducts)[0][0]);;
+
+  cartList.push(Object.values(allProducts)[0][0]);
   updateCartList();
 }
 
-function removeItemFromCart(item) {
-  
+function minutItemFromCart() {
+  cartList.pop();
+  updateCartList();
 }
 
+function decreaseItems() {
+   
+}
+
+// function increaseItems() {
+//   addItemToCart();
+// }
+
+function resetItems() {
+
+  saveToLocalStorage();
+  getTitle();
+
+  cartList.length = 0;
+  console.log(cartList);
+  console.log("List is reset.");
+
+ 
+  updateCartList();
+}
 
 function updateCartList() {
-  
+  let iphoneCounterTag = document.querySelector("#iphone-counter");
+  iphoneCounterTag.textContent = cartList.length;
+
+  console.log(cartList);
   cartList.forEach(element => {
     
   });
@@ -106,3 +130,51 @@ function hideCartItems() {
 function hideTopNavPanel() {
   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//TODO: Local Storage.
+
+function saveToLocalStorage() {
+  //JSON: to the localStorage
+  // const userObj = {
+  //   username = "Maria",
+  //   email: "maria@mail.com"
+  // }
+  // localStorage.setItem('user', JSON.stringify(userObj))
+  
+  localStorage.setItem('cart', JSON.stringify(cartList[0]));
+  console.log(cartList);
+  alert("Cart is saved.");
+}
+
+function getTitle() {
+    let getFromLocal = localStorage.getItem("cart");
+    console.log("getFromLocal:");
+    console.log(getFromLocal);
+
+if (getFromLocal) {
+  const jsonFromLocal = JSON.parse(getFromLocal)
+    alert(getFromLocal);
+    console.log(jsonFromLocal);
+
+} else {
+  console.log('User data not found in local storage')
+}
+
+
+}
+
