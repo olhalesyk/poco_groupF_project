@@ -1,20 +1,7 @@
 const jsonFilePath = './static/js/data.json';
 
-let cartList = null;
-let cartItemsCounter = 0;
-let cartTag = document.querySelector("#cart_container");
-
-//test:
-clearCart();
-
-
-let itemsOnThePage = document.getElementsByClassName("buy"); 
-console.log(itemsOnThePage[0]);
-
-itemsOnThePage[0].addEventListener("click", () => {
-  addItemToCart();
-});
-
+//Apple objects 
+let allProducts = null;
 fetch(jsonFilePath)
   .then(response => {
     if (!response.ok) {
@@ -23,11 +10,38 @@ fetch(jsonFilePath)
     return response.json();
   })
   .then(data => {
+    allProducts = data;
     console.log(data);
   })
   .catch(error => {
     console.error('Error fetching JSON:', error);
   }); 
+
+
+
+//user list
+let cartList = [];
+let cartItemsCounter = 0;
+let cartTag = document.querySelector("#cart_container");
+
+//test:
+// clearCart();
+hideCartItems();
+
+let buyItemsTag = document.getElementsByClassName("buy"); 
+// console.log(buyItemsTag.length);
+// console.log(buyItemsTag);
+
+Object.values(buyItemsTag).forEach(element => {
+  // console.log(element);
+  
+  element.addEventListener("click", () => {
+  console.log("Add to the cart");
+  let iphone = document.querySelector("#iphone"); 
+  console.log(iphone);
+  iphone.style.visibility = "visible";
+  });
+});
 
 
 let localTest = "";
@@ -48,22 +62,31 @@ function getTitle() {
 }
 
 
-function addItemToCart(item) {
+function addItemToCart() { //item
   
+  cartList.push("Hello");
+  updateCartList();
 }
 
 function removeItemFromCart(item) {
   
 }
 
-function hideTopNavPanel() {
-  
-}
-
-updateCartList();
 
 function updateCartList() {
   
+  cartList.forEach(element => {
+    
+  });
+  
+  updateCartCounter();
+}
+
+
+
+function updateCartCounter() {
+  cartItemsCounter = cartList.length;
+  document.querySelector("#cart-counter").textContent = cartItemsCounter;
 }
 
 function clearCart() {
@@ -72,7 +95,14 @@ function clearCart() {
   }
 }
 
+function hideCartItems() {
+    console.log("Hide Items");
+    for (const child of cartTag.children) {
+      console.log(child);
+      child.style.visibility =  "hidden";
+    }
+}
 
-function updateCartCounter() {
-  document.querySelector("#cart-counter").textContent = cartItemsCounter;
+function hideTopNavPanel() {
+  
 }
