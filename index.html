@@ -57,7 +57,7 @@
                   d="M12.9688 12.9C12.9688 13.5 12.4688 14 11.8687 14H3.06875C2.46875 14 1.96875 13.5 1.96875 12.9V5C1.96875 4.5 2.46875 4 3.06875 4H11.9688C12.5688 4 13.0688 4.5 13.0688 5.1V12.9H12.9688ZM7.46875 1C8.66875 1 9.56875 1.9 9.76875 3H5.16875C5.36875 1.9 6.26875 1 7.46875 1ZM11.8687 3H10.7688C10.5688 1.3 9.16875 0 7.46875 0C5.76875 0 4.36875 1.3 4.16875 3H3.06875C1.86875 3 0.96875 3.9 0.96875 5.1V13C0.96875 14.1 1.86875 15 3.06875 15H11.9688C13.0688 15 14.0688 14.1 14.0688 12.9V5C13.9688 3.9 13.0687 3 11.8687 3Z" />
               </svg>
               <span
-                class="text-white absolute -right-1 top-1/2 inline-flex h-5 min-w-5 justify-center rounded-full bg-activeblue p-1 align-middle text-[.7rem] leading-none">0</span>
+                id = "cart-counter" class="text-white absolute -right-1 top-1/2 inline-flex h-5 min-w-5 justify-center rounded-full bg-activeblue p-1 align-middle text-[.7rem] leading-none">0</span>
             </button>
           </div>
           <!-- Mobile menu button -->
@@ -84,7 +84,7 @@
     <div x-cloak :class="[isCartOpen ? 'translate-x-0 opacity-100' : 'opacity-0 translate-x-full']"
       class="cartSidebar opacity-0 shadow-white/25 text-white bg-black fixed inset-[0_0_0_auto] z-20 grid w-full grid-rows-[50px_minmax(0px,_1fr)_100px] py-8 shadow-inner transition-all duration-300 ease-in-out sm:w-96">
       <p class="h2 px-4 pb-4 text-2xl">Shopping Cart</p>
-      <ul class="cart-items-list overflow-auto py-4">
+      <ul id="cart_container" class="cart-items-list overflow-auto py-4">
         <li class="cart-item grid grid-cols-[30px_70px_120px_1fr] items-center gap-3 p-4 text-center">
           <button
             class="remove-button hover:text-white inline-flex h-5 w-5 items-center justify-center rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
@@ -218,7 +218,7 @@
           <h1 class="mt-12 py-4 text-4xl font-bold">iPhone 14 Pro</h1>
           <p class="text-lg font-normal">Big and biger</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue">Buy now</button>
+          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
         </div>
         <div class="hero-left col-end-2 mt-4 place-self-end">
           <img src="static/img/section1-left-hand.png" alt="product-phone-14" />

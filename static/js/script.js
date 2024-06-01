@@ -1,5 +1,20 @@
 const jsonFilePath = './static/js/data.json';
 
+let cartList = null;
+let cartItemsCounter = 0;
+let cartTag = document.querySelector("#cart_container");
+
+//test:
+clearCart();
+
+
+let itemsOnThePage = document.getElementsByClassName("buy"); 
+console.log(itemsOnThePage[0]);
+
+itemsOnThePage[0].addEventListener("click", () => {
+  addItemToCart();
+});
+
 fetch(jsonFilePath)
   .then(response => {
     if (!response.ok) {
@@ -30,4 +45,34 @@ function saveToLocalStorage() {
 function getTitle() {
     let getLocalTitle = localStorage.getItem("title");
     // alert(getLocalTitle);
+}
+
+
+function addItemToCart(item) {
+  
+}
+
+function removeItemFromCart(item) {
+  
+}
+
+function hideTopNavPanel() {
+  
+}
+
+updateCartList();
+
+function updateCartList() {
+  
+}
+
+function clearCart() {
+  while (cartTag.firstChild) {
+    cartTag.removeChild(cartTag.firstChild);
+  }
+}
+
+
+function updateCartCounter() {
+  document.querySelector("#cart-counter").textContent = cartItemsCounter;
 }
