@@ -5,7 +5,7 @@
         "name": "iPhone 14",
         "category": "Smartphone",
         "price": 799,
-        "colors": ["Black", "White", "Blue", "Red", "Green"],
+        "color": "Black",
         "storage_options": ["128GB", "256GB", "512GB"],
         "release_date": "2022-09-16"
       },

@@ -1,5 +1,8 @@
 const jsonFilePath = './static/js/data.json';
 
+// Iphone possible options
+// ["Black", "White", "Blue", "Red", "Green"]
+// ["128GB", "256GB", "512GB"]
 //Apple objects 
 let allProducts = null;
 fetch(jsonFilePath)
@@ -26,19 +29,13 @@ let cartTag = document.querySelector("#cart_container");
 
 //test:
 // clearCart();
-// hideCartItems();
+hideCartItems();
 
 let buyItemsTag = document.getElementsByClassName("buy"); 
-// console.log(buyItemsTag.length);
-// console.log(buyItemsTag);
 
 Object.values(buyItemsTag).forEach(element => {
-  // console.log(element);
-  
   element.addEventListener("click", () => {
-  console.log("Add to the cart");
   let iphone = document.querySelector("#iphone"); 
-  console.log(iphone);
   iphone.style.visibility = "visible";
 
   addItemToCart();
@@ -56,19 +53,27 @@ document.querySelector("#iphone-plus").addEventListener("click", () => {
 });
 
 document.querySelector("#iphone-minus").addEventListener("click", () => {
-  minutItemFromCart();
+  minusItemFromCart();
 });
 
 
 function addItemToCart() { //item
-  console.log("ADD the item");
-  console.log(Object.values(allProducts)[0][0]);;
+  //test
+  let iphone = Object.values(allProducts)[0][0];
+  iphone.color = "GRERER"
+  alert(iphone);
 
   cartList.push(Object.values(allProducts)[0][0]);
   updateCartList();
 }
 
-function minutItemFromCart() {
+function minusItemFromCart() {
+  //send ID of the product
+
+  // let cartCounterTag = document.querySelector(id+"-counter");
+  // let counter = cartCounterTag.textContent;
+  // cartCounterTag.textContent = counter - 1;
+
   cartList.pop();
   updateCartList();
 }
@@ -77,20 +82,14 @@ function decreaseItems() {
    
 }
 
-// function increaseItems() {
-//   addItemToCart();
-// }
-
+ 
 function resetItems() {
 
   saveToLocalStorage();
   getTitle();
 
   cartList.length = 0;
-  console.log(cartList);
-  console.log("List is reset.");
 
- 
   updateCartList();
 }
 
@@ -99,10 +98,12 @@ function updateCartList() {
   iphoneCounterTag.textContent = cartList.length;
 
   console.log(cartList);
-  cartList.forEach(element => {
-    
+  cartList.forEach(element => { 
+  // if (cartList.count > 0) {
+  //   // showTheItemWithColor
+  // }
   });
-  
+
   updateCartCounter();
 }
 
@@ -125,10 +126,6 @@ function hideCartItems() {
       console.log(child);
       child.style.visibility =  "hidden";
     }
-}
-
-function hideTopNavPanel() {
-  
 }
 
 
