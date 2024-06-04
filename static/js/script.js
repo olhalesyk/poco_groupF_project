@@ -14,7 +14,7 @@ fetch(jsonFilePath)
   })
   .then(data => {
     allProducts = data;
-    console.log(data);
+    // console.log(data);
   })
   .catch(error => {
     console.error('Error fetching JSON:', error);
@@ -31,25 +31,76 @@ let cartTag = document.querySelector("#cart_container");
 // clearCart();
 hideCartItems();
 
-let buyItemsTag = document.getElementsByClassName("buy"); 
+let buyIphoneTag = document.getElementById("buy-iphone"); 
+let buyMacBookTag = document.getElementById("buy-mac");
+let buyWatchTag = document.getElementById("buy-watch"); 
+let buyWatch2Tag = document.getElementById("buy-watch-2"); 
+let buyWatch3Tag = document.getElementById("buy-watch-3"); 
+let buyAirPodsTag = document.getElementById("buy-airpods"); 
+let buyFitnessTag = document.getElementById("buy-fitness"); 
+let buyMacBookAirTag = document.getElementById("buy-mac-air"); 
+let buyCardTag = document.getElementById("buy-card"); 
+// let buyStreamTag = document.getElementsByClassName("buy-iphone"); 
 
-Object.values(buyItemsTag).forEach(element => {
-  element.addEventListener("click", () => {
-  let iphone = document.querySelector("#iphone"); 
-  iphone.style.visibility = "visible";
+// Object.values(buyItemsTag).forEach(element => {
+//   element.addEventListener("click", () => {
+//   let iphone = document.querySelector("#iphone"); 
+//   iphone.style.visibility = "visible";
 
-  addItemToCart();
-  });
-});
+//   addItemToCart();
+//   });
+// });
 
 
 //listeners:
+// on the main page
+let color = "default";
+buyIphoneTag.addEventListener("click", () => {
+  addItemToCart(buyIphoneTag.id, color);
+});
+buyMacBookTag.addEventListener("click", () => {
+  addItemToCart(buyMacBookTag.id, color);
+});
+buyWatchTag.addEventListener("click", () => {
+  addItemToCart(buyWatchTag.id, color);
+});
+buyWatch2Tag.addEventListener("click", () => {
+  addItemToCart(buyWatch2Tag.id, color);
+});
+buyWatch3Tag.addEventListener("click", () => {
+  addItemToCart(buyWatch3Tag.id, color);
+});
+buyAirPodsTag.addEventListener("click", () => {
+  addItemToCart(buyAirPodsTag.id, color);
+});
+buyFitnessTag.addEventListener("click", () => {
+  addItemToCart(buyFitnessTag.id, color);
+});
+buyMacBookAirTag.addEventListener("click", () => {
+  addItemToCart(buyMacBookAirTag.id, color);
+});
+buyCardTag.addEventListener("click", () => {
+  addItemToCart(buyCardTag.id, color);
+});
+
+ 
+
+
+
 document.querySelector("#iphone-items-reset").addEventListener("click", () => {
   resetItems();
 });
 
 document.querySelector("#iphone-plus").addEventListener("click", () => {
-  addItemToCart();
+  addItemToCart("iphone"); //title, type or id? //:TODO
+});
+
+document.querySelector("#iphone-minus").addEventListener("click", () => {
+  minusItemFromCart();
+});
+
+document.querySelector("#iphone-plus").addEventListener("click", () => {
+  addItemToCart("iphone"); //title, type or id? //:TODO
 });
 
 document.querySelector("#iphone-minus").addEventListener("click", () => {
@@ -57,17 +108,49 @@ document.querySelector("#iphone-minus").addEventListener("click", () => {
 });
 
 
-function addItemToCart() { //item
-  //test
-  let iphone = Object.values(allProducts)[0][0];
-  iphone.color = "GRERER"
-  alert(iphone);
+function addItemToCart(itemId, color) { //item
 
-  cartList.push(Object.values(allProducts)[0][0]);
+  let product = null;
+
+  switch (itemId) {
+    case buyIphoneTag.id:
+      //iphone pro
+      productToCart = (Object.values(allProducts)[0][1]);
+      break;
+
+      case buyMacBookTag.id:
+        //MacBook
+        productToCart = (Object.values(allProducts)[0][3]);
+        break;
+
+        case buyWatchTag.id:
+          productToCart = (Object.values(allProducts)[0][5]);
+          break;
+
+          case buyAirPodsTag.id:
+            productToCart = (Object.values(allProducts)[0][6]);
+            break;
+
+
+            case buyMacBookAirTag:
+              productToCart = (Object.values(allProducts)[0][2]);
+              break;
+  
+    default: 
+    product = null;
+    console.log("Other products");
+      break;
+  }
+
+
+
+  cartList.push(product);
   updateCartList();
 }
 
 function minusItemFromCart() {
+  //todo find the Item in cartList and remove it
+
   //send ID of the product
 
   // let cartCounterTag = document.querySelector(id+"-counter");
@@ -97,6 +180,7 @@ function updateCartList() {
   let iphoneCounterTag = document.querySelector("#iphone-counter");
   iphoneCounterTag.textContent = cartList.length;
 
+  console.log("Updated cartList:");
   console.log(cartList);
   cartList.forEach(element => { 
   // if (cartList.count > 0) {
@@ -175,3 +259,18 @@ if (getFromLocal) {
 
 }
 
+
+
+//checkout
+function checkout() {
+  
+}
+
+function getFormInfo() {
+  //combine the filled in user information for checkout
+  
+  //name
+  //surname
+  //etc
+
+}
