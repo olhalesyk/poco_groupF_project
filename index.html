@@ -33,18 +33,18 @@
           <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full']"
             class="absolute inset-x-0 top-[76px] z-20 h-screen w-full bg-bgdarkgray px-6 py-4 transition-all duration-300 ease-in-out md:relative md:top-0 md:mt-0 md:flex md:h-auto md:translate-x-0 md:items-center md:justify-between md:p-0 md:opacity-100">
             <div class="-mx-4 flex flex-col px-2 text-base md:mx-10 md:flex-row md:items-center md:py-0">
-              <a href="#"
+              <a href="#" x-cloak @click="isOpen = !isOpen"
                 class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">Home</a>
-              <a href="/#iphone"
+              <a href="/#iphone" x-cloak @click="isOpen = !isOpen"
                 class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">iPhone</a>
-              <a href="/#macbook"
+              <a href="/#macbook" x-cloak @click="isOpen = !isOpen"
                 class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">MacBook</a>
-              <a href="/#airpods"
+              <a href="/#airpods" x-cloak @click="isOpen = !isOpen"
                 class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">AirPods
                 Pro</a>
-              <a href="/#buy-product"
-                class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">Buy
-                product</a>
+              <a href="/#watch" x-cloak @click="isOpen = !isOpen"
+                class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">Apple
+                Watch</a>
             </div>
           </div>
         </div>
@@ -263,8 +263,8 @@
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button class="px-4 py-2 text-activeblue buy">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end">
-          <img class="w-full" src="static/img/section3-Iwatch.png" alt="Iwatch" />
+        <div class="hero-left mt-10 place-content-end max-w-screen-lg w-full">
+          <img src="static/img/section3-Iwatch.png" alt="Iwatch" />
         </div>
       </div>
     </section>
@@ -293,7 +293,7 @@
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button class="px-4 py-2 text-activeblue buy">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end">
+        <div class="hero-left mt-4 place-content-end max-w-sm py-10">
           <img class="" src="static/img/section5-IWatches.png" alt="IWatches" />
         </div>
       </div>
@@ -310,7 +310,7 @@
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button class="px-4 py-2 text-activeblue buy">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end">
+        <div class="hero-left mt-4 place-content-end max-w-sm py-10">
           <img class="" src="static/img/section5-Iphones.png" alt="Iphones" />
         </div>
       </div>
@@ -332,11 +332,11 @@
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button class="px-4 py-2 text-activeblue buy">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end">
+        <div class="hero-left mt-4 place-content-end pt-10">
           <img class="" src="static/img/section4-Iwatch_front.png" alt="Iwatch" />
         </div>
       </div>
-      <div class="grid justify-center bg-black px-4">
+      <div class="grid justify-center bg-black px-4" id="airpods">
         <div class="text-white">
           <h2 class="mt-14 py-2 text-3xl font-bold leading-none"> AirPods Pro
           </h2>
@@ -344,7 +344,7 @@
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button class="px-4 py-2 text-activeblue buy">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end">
+        <div class="hero-left mt-4 place-content-end pt-10">
           <img class="" src="static/img/section4-headphones.png" alt="headphones" />
         </div>
       </div>
@@ -360,7 +360,7 @@
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button class="px-4 py-2 text-activeblue buy">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end">
+        <div class="hero-left mt-4 place-content-end py-10">
           <img class="" src="static/img/section6-Macbooks.png" alt="Macbooks" />
         </div>
       </div>
@@ -377,7 +377,7 @@
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button class="px-4 py-2 text-activeblue buy">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end">
+        <div class="hero-left mt-4 place-content-end py-10">
           <img class="" src="static/img/section6-card.png" alt="card" />
         </div>
       </div>
