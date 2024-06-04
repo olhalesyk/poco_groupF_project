@@ -25,11 +25,11 @@ fetch(jsonFilePath)
 //user list
 let cartList = [];
 let cartItemsCounter = 0;
-let cartTag = document.querySelector("#cart_container");
+let cartItemsContainerTag = document.querySelector("#cart_container");
 
 //test:
-// clearCart();
-hideCartItems();
+clearCart();
+// hideCartItems();
 
 let buyIphoneTag = document.getElementById("buy-iphone"); 
 let buyMacBookTag = document.getElementById("buy-mac");
@@ -87,30 +87,29 @@ buyCardTag.addEventListener("click", () => {
 
 
 
-document.querySelector("#iphone-items-reset").addEventListener("click", () => {
-  resetItems();
-});
+// document.querySelector("#iphone-items-reset").addEventListener("click", () => {
+//   resetItems();
+// });
 
-document.querySelector("#iphone-plus").addEventListener("click", () => {
-  addItemToCart("iphone"); //title, type or id? //:TODO
-});
+// document.querySelector("#iphone-plus").addEventListener("click", () => {
+//   addItemToCart("iphone"); //title, type or id? //:TODO
+// });
 
-document.querySelector("#iphone-minus").addEventListener("click", () => {
-  minusItemFromCart();
-});
+// document.querySelector("#iphone-minus").addEventListener("click", () => {
+//   minusItemFromCart();
+// });
 
-document.querySelector("#iphone-plus").addEventListener("click", () => {
-  addItemToCart("iphone"); //title, type or id? //:TODO
-});
+// document.querySelector("#iphone-plus").addEventListener("click", () => {
+//   addItemToCart("iphone"); //title, type or id? //:TODO
+// });
 
-document.querySelector("#iphone-minus").addEventListener("click", () => {
-  minusItemFromCart();
-});
+// document.querySelector("#iphone-minus").addEventListener("click", () => {
+//   minusItemFromCart();
+// });
 
 
 function addItemToCart(itemId, color) { //item
-
-  let product = null;
+  let productToCart = null;
 
   switch (itemId) {
     case buyIphoneTag.id:
@@ -136,15 +135,23 @@ function addItemToCart(itemId, color) { //item
               productToCart = (Object.values(allProducts)[0][2]);
               break;
   
+
+              //todo: Fitness, Card, Stream - is needed the Obj-data
+              case buyMacBookAirTag:
+                productToCart = (Object.values(allProducts)[0][2]);
+                break;
+    
+
+
     default: 
-    product = null;
+    productToCart = null;
     console.log("Other products");
       break;
   }
 
 
 
-  cartList.push(product);
+  cartList.push(productToCart);
   updateCartList();
 }
 
@@ -176,8 +183,14 @@ function resetItems() {
   updateCartList();
 }
 
+
+function fillCartWithSavedProducts() {
+  //when the page updates, the cart needs to be filled
+}
+
 function updateCartList() {
-  let iphoneCounterTag = document.querySelector("#iphone-counter");
+  console.log(cartList.length);
+  let iphoneCounterTag = document.querySelector("#cart-counter");
   iphoneCounterTag.textContent = cartList.length;
 
   console.log("Updated cartList:");
@@ -188,6 +201,38 @@ function updateCartList() {
   // }
   });
 
+
+  //TODO: Bad Idea, working tempararly
+  const element = document.createElement('div');
+  element.innerHTML = `<li id="iphone" class="cart-item grid grid-cols-[30px_70px_120px_1fr] items-center gap-3 p-4 text-center">
+          <button
+            class="remove-button hover:text-white inline-flex h-5 w-5 items-center justify-center rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+            <svg id="iphone-items-reset" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div class="image max-w-16 rounded-md bg-bglightgray p-3">
+            <img src="static/img/product_1/product-phone-14-pro.jpg" alt="product-phone-14-pro" />
+          </div>
+          <div class="product-info flex flex-col gap-2 text-left">
+            <div class="name">iPhone 14 Pro</div>
+            <div class="price">$0.00</div>
+          </div>
+          <div class="quantity">
+            <button id="iphone-minus"
+              class="quantity-button-minus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+              -
+            </button>
+            <span id="iphone-counter" class="inline-block h-5 min-w-5 rounded-sm px-1">1</span>
+            <button id = "iphone-plus"
+              class="quantity-button-plus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+              +
+            </button>
+          </div>
+        </li>`;
+
+  cartItemsContainerTag.appendChild(element);
   updateCartCounter();
 }
 
@@ -199,14 +244,14 @@ function updateCartCounter() {
 }
 
 function clearCart() {
-  while (cartTag.firstChild) {
-    cartTag.removeChild(cartTag.firstChild);
+  while (cartItemsContainerTag.firstChild) {
+    cartItemsContainerTag.removeChild(cartItemsContainerTag.firstChild);
   }
 }
 
 function hideCartItems() {
     console.log("Hide Items");
-    for (const child of cartTag.children) {
+    for (const child of cartItemsContainerTag.children) {
       console.log(child);
       child.style.visibility =  "hidden";
     }
