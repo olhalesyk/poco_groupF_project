@@ -1,26 +1,23 @@
-const jsonFilePath = './static/js/data.json';
-
+const jsonFilePath = "./static/js/data.json";
 // Iphone possible options
 // ["Black", "White", "Blue", "Red", "Green"]
 // ["128GB", "256GB", "512GB"]
-//Apple objects 
+//Apple objects
 let allProducts = null;
 fetch(jsonFilePath)
-  .then(response => {
+  .then((response) => {
     if (!response.ok) {
-      throw new Error('Failed to fetch JSON');
+      throw new Error("Failed to fetch JSON");
     }
     return response.json();
   })
-  .then(data => {
+  .then((data) => {
     allProducts = data;
     console.log(data);
   })
-  .catch(error => {
-    console.error('Error fetching JSON:', error);
-  }); 
-
-
+  .catch((error) => {
+    console.error("Error fetching JSON:", error);
+  });
 
 //user list
 let cartList = [];
@@ -31,17 +28,16 @@ let cartTag = document.querySelector("#cart_container");
 // clearCart();
 hideCartItems();
 
-let buyItemsTag = document.getElementsByClassName("buy"); 
+let buyItemsTag = document.getElementsByClassName("buy");
 
-Object.values(buyItemsTag).forEach(element => {
+Object.values(buyItemsTag).forEach((element) => {
   element.addEventListener("click", () => {
-  let iphone = document.querySelector("#iphone"); 
-  iphone.style.visibility = "visible";
+    let iphone = document.querySelector("#iphone");
+    iphone.style.visibility = "visible";
 
-  addItemToCart();
+    addItemToCart();
   });
 });
-
 
 //listeners:
 document.querySelector("#iphone-items-reset").addEventListener("click", () => {
@@ -56,11 +52,11 @@ document.querySelector("#iphone-minus").addEventListener("click", () => {
   minusItemFromCart();
 });
 
-
-function addItemToCart() { //item
+function addItemToCart() {
+  //item
   //test
   let iphone = Object.values(allProducts)[0][0];
-  iphone.color = "GRERER"
+  iphone.color = "GRERER";
   alert(iphone);
 
   cartList.push(Object.values(allProducts)[0][0]);
@@ -78,13 +74,9 @@ function minusItemFromCart() {
   updateCartList();
 }
 
-function decreaseItems() {
-   
-}
+function decreaseItems() {}
 
- 
 function resetItems() {
-
   saveToLocalStorage();
   getTitle();
 
@@ -98,16 +90,14 @@ function updateCartList() {
   iphoneCounterTag.textContent = cartList.length;
 
   console.log(cartList);
-  cartList.forEach(element => { 
-  // if (cartList.count > 0) {
-  //   // showTheItemWithColor
-  // }
+  cartList.forEach((element) => {
+    // if (cartList.count > 0) {
+    //   // showTheItemWithColor
+    // }
   });
 
   updateCartCounter();
 }
-
-
 
 function updateCartCounter() {
   cartItemsCounter = cartList.length;
@@ -121,27 +111,12 @@ function clearCart() {
 }
 
 function hideCartItems() {
-    console.log("Hide Items");
-    for (const child of cartTag.children) {
-      console.log(child);
-      child.style.visibility =  "hidden";
-    }
+  console.log("Hide Items");
+  for (const child of cartTag.children) {
+    console.log(child);
+    child.style.visibility = "hidden";
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //TODO: Local Storage.
 
@@ -152,26 +127,22 @@ function saveToLocalStorage() {
   //   email: "maria@mail.com"
   // }
   // localStorage.setItem('user', JSON.stringify(userObj))
-  
-  localStorage.setItem('cart', JSON.stringify(cartList[0]));
+
+  localStorage.setItem("cart", JSON.stringify(cartList[0]));
   console.log(cartList);
   alert("Cart is saved.");
 }
 
 function getTitle() {
-    let getFromLocal = localStorage.getItem("cart");
-    console.log("getFromLocal:");
-    console.log(getFromLocal);
+  let getFromLocal = localStorage.getItem("cart");
+  console.log("getFromLocal:");
+  console.log(getFromLocal);
 
-if (getFromLocal) {
-  const jsonFromLocal = JSON.parse(getFromLocal)
+  if (getFromLocal) {
+    const jsonFromLocal = JSON.parse(getFromLocal);
     alert(getFromLocal);
     console.log(jsonFromLocal);
-
-} else {
-  console.log('User data not found in local storage')
+  } else {
+    console.log("User data not found in local storage");
+  }
 }
-
-
-}
-
