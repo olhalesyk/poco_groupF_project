@@ -11,9 +11,11 @@
   <script defer src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.10/dist/cdn.min.js"></script>
+  <script defer src="https://unpkg.com/@splinetool/runtime"></script>
   <!-- Custom scripts -->
   <script defer src="static/js/script.js"></script>
 </head>
+
 
 <body class="relative font-display" x-data="{ isCartOpen: false, isOpen: false }">
   <header class="sticky top-0 w-full bg-bgdarkgray">
@@ -227,11 +229,7 @@
           <img src="static/img/section1-right-hand.png" alt="product-phone-14-pro" />
         </div>
       </div>
-    </section>
-    <!-- Section 2 - 3D test -->
-    <section class="" id="canvas3d">
-
-    </section>
+    </section> 
     <!-- Section 2 - MacBook -->
     <section class="bg-black text-center" id="macbook">
       <div class="grid justify-center">
@@ -270,6 +268,13 @@
         </div>
       </div>
     </section>
+    
+    <!-- Section 3 - 3D spline -->
+    <section class="bg-[#020102]">
+      <canvas class="container mx-auto" id="canvas3d">
+      </canvas>
+    </section>
+
     <!-- Section 4 -->
     <section class="text-center grid grid-cols-1 md:grid-cols-2 gap-2 px-2 mb-2" id="">
       <div class="grid justify-center bg-black px-4">
