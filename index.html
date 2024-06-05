@@ -11,6 +11,8 @@
   <script defer src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.10/dist/cdn.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@latest/dist/simpleParallax.min.js" defer></script> -->
+  <script src="./node_modules/parallax-js/dist/parallax.min.js" defer></script>
   <!-- Custom scripts -->
   <script defer src="static/js/script.js"></script>
 </head>
@@ -217,7 +219,7 @@
       <div class="grid auto-cols-fr grid-cols-1 gap-4 md:grid-cols-2">
         <div class="col-span-2">
           <h1 class="mt-12 py-4 text-4xl font-bold">iPhone 14 Pro</h1>
-          <p class="text-lg font-normal">Big and biger</p>
+          <p class="text-lg font-normal">Big and bigger</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button class="px-4 py-2 text-activeblue buy">Buy now</button>
         </div>
@@ -266,8 +268,10 @@
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button class="px-4 py-2 text-activeblue buy">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end">
-          <img class="w-full" src="static/img/section3-Iwatch.png" alt="Iwatch" />
+        <div class="watch_wrapper">
+          <div class="hero-left mt-4 place-content-end inner_wrapper parallax" id="parallaxInner">
+            <img class="w-full main_watch" src="static/img/section3-Iwatch.png" alt="Iwatch" id="parallaxWatch"/>
+          </div>
         </div>
       </div>
     </section>
