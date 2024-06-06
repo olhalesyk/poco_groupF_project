@@ -66,10 +66,6 @@ Object.values(buyItemsTag).forEach((element) => {
   });
 });
 
-//listeners:
-document.querySelector("#iphone-items-reset").addEventListener("click", () => {
-  resetItems();
-});
 
 
 //listeners:
@@ -129,21 +125,12 @@ buyCardTag.addEventListener("click", () => {
 //itemId - id of the tag
 function addItemToCart(itemId, color) { 
   let productToCart = null;
-  let quantityInCart = 0;
 
   switch (itemId) {
     case buyIphoneTag.id:
       //iphone pro
       productToCart = (Object.values(allProducts)[0][1]);
       break;
-
-
-function addItemToCart() {
-  //item
-  //test
-  let iphone = Object.values(allProducts)[0][0];
-  iphone.color = "GRERER";
-  alert(iphone);
 
       case buyMacBookTag.id:
         //MacBook
@@ -252,7 +239,7 @@ function updateCartList() {
   element.innerHTML = `<li class="cart-item grid grid-cols-[30px_70px_120px_1fr] items-center gap-3 p-4 text-center">
           <button
             class="remove-button hover:text-white inline-flex h-5 w-5 items-center justify-center rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
-            <svg id="iphone-items-reset" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+            <svg id="product-item-reset" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
               stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -277,7 +264,15 @@ function updateCartList() {
           </div>
         </li>`;
 
+  
+
   cartItemsContainerTag.appendChild(element);
+  
+  //listeners:
+  document.querySelector("#product-item-reset").addEventListener("click", () => {
+    resetItems();
+  });
+  
   updateCartCounter();
 }
 
