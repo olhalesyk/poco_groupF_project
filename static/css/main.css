@@ -163,45 +163,61 @@
   }
 }
 
-
 /* Animations */
 .scroll-watcher {
   height: 10px;
   position: fixed;
   top: 0;
   z-index: 1000;
-  background-color:cadetblue;
+  background-color: cadetblue;
   width: 100%;
   scale: 0 1;
   transform-origin: left;
   animation: scroll-watcher linear;
-  animation-timeline:scroll();
+  animation-timeline: scroll();
 }
 
 @keyframes scroll-watcher {
-  to {scale: 1 1;}
+  to {
+    scale: 1 1;
+  }
 }
 
-.watches, .air, .fitness, .card {
-  animation:fade-in linear;
+.watches,
+.air,
+.fitness,
+.card {
+  animation: fade-in linear;
   animation-timeline: view();
-  animation-range-start:200px;
+  animation-range-start: 200px;
 }
 
 @keyframes fade-in {
-  from {scale: .8; opacity: 0;}
-  to {scale: 1; opacity: 1;}
+  from {
+    scale: 0.8;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
 }
 
 .macbook-image {
   animation: macbook-image-animation linear forwards;
   animation-timeline: view();
-  animation-range:exit -200px;
+  animation-range: exit -200px;
 }
 
 @keyframes macbook-image-animation {
-  25% {opacity:1;}
-  85%, 100% {opacity:0;scale: 3;}
+  25% {
+    opacity: 1;
+  }
+  85%,
+  100% {
+    opacity: 0;
+    scale: 3;
+  }
 }
 
 /* @keyframes fade-out {
@@ -209,65 +225,26 @@
 } */
 
 /* Parallax effect to main watch */
-/* .watch_wrapper {
-   height: 80vh; 
-    overflow-y:auto; 
+.watch_wrapper {
+  height: 80vh;
+  overflow-y: auto;
   overflow-x: hidden;
   perspective: 10px;
 }
 
 .inner_wrapper {
- position: relative; 
- display: flex;
+  position: relative;
+  display: flex;
   justify-content: center;
-  align-items: center; 
-  height: 100%; 
+  align-items: center;
+  height: 100%;
   transform-style: preserve-3d;
-   z-index: -1;
+  z-index: -1;
 }
 
 .main_watch {
- 
   width: 100%;
-  height: 100%; 
-  object-fit:cover;
-transform: translateZ(-10px) scale(2);
+  height: 100%;
+  object-fit: cover;
+  transform: translateZ(-10px) scale(2);
 }
- */
-
- /* General styling */
-/* .watch_wrapper {
-    position: relative;
-    overflow: hidden;
-}
-
-.inner_wrapper {
-    position: relative;
-    overflow: hidden;
-}
-
-
-.parallax img {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    transform: translateZ(-1px);
-    z-index: -1;
-    object-fit: cover;
-}
-
-.hero-left .main_watch {
-    position: relative;
-    z-index: 1;
-}
-
-.mt-4 {
-    margin-top: 1rem;
-}
-
-.w-full {
-    width: 100%;
-}
- */

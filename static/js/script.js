@@ -1,4 +1,3 @@
-// import Parallax from "parallax-js";
 const jsonFilePath = "./static/js/data.json";
 
 // Iphone possible options
@@ -148,20 +147,3 @@ function getTitle() {
     console.log("User data not found in local storage");
   }
 }
-
-/* Parallax effect */
-/* document.addEventListener("DOMContentLoaded", function () {
-  const parallaxWatchImage = document.getElementById("parallaxWatch");
-  if (parallaxWatchImage && typeof SimpleParallax !== "undefined") {
-    console.log("Parallax image element found:", parallaxWatchImage);
-    new SimpleParallax(parallaxWatchImage);
-    console.log("Parallax effect applied");
-  } else {
-    console.error(
-      "Parallax image element not found or SimpleParallax library not loaded",
-    );
-  }
-}); */
-
-const parallaxWatchImageContainer = document.getElementById("parallaxInner");
-const parallaxInstance = new Parallax(parallaxWatchImageContainer);
