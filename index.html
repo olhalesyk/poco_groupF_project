@@ -11,12 +11,10 @@
   <script defer src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.10/dist/cdn.min.js"></script>
-  <script defer src="https://unpkg.com/@splinetool/runtime"></script>
+  <script defer type="module" src="./static/js/spline_3d.js"></script>
   <!-- Custom scripts -->
   <script defer src="static/js/script.js"></script>
 </head>
-
-
 <body class="relative font-display" x-data="{ isCartOpen: false, isOpen: false }">
   <div class="scroll-watcher"></div>
   <header class="sticky top-0 w-full bg-bgdarkgray">
@@ -34,18 +32,18 @@
           <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full']"
             class="absolute inset-x-0 top-[76px] z-20 h-screen w-full bg-bgdarkgray px-6 py-4 transition-all duration-300 ease-in-out md:relative md:top-0 md:mt-0 md:flex md:h-auto md:translate-x-0 md:items-center md:justify-between md:p-0 md:opacity-100">
             <div class="-mx-4 flex flex-col px-2 text-base md:mx-10 md:flex-row md:items-center md:py-0">
-              <a href="#"
+              <a href="#" x-cloak @click="isOpen = !isOpen"
                 class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">Home</a>
-              <a href="/#iphone"
+              <a href="/#iphone-section" x-cloak @click="isOpen = !isOpen"
                 class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">iPhone</a>
-              <a href="/#macbook"
+              <a href="/#macbook" x-cloak @click="isOpen = !isOpen"
                 class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">MacBook</a>
-              <a href="/#airpods"
+              <a href="/#airpods" x-cloak @click="isOpen = !isOpen"
                 class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">AirPods
                 Pro</a>
-              <a href="/#buy-product"
-                class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">Buy
-                product</a>
+              <a href="/#watch" x-cloak @click="isOpen = !isOpen"
+                class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">Apple
+                Watch</a>
             </div>
           </div>
         </div>
@@ -59,8 +57,8 @@
                 <path fill-rule="evenodd" clip-rule="evenodd"
                   d="M12.9688 12.9C12.9688 13.5 12.4688 14 11.8687 14H3.06875C2.46875 14 1.96875 13.5 1.96875 12.9V5C1.96875 4.5 2.46875 4 3.06875 4H11.9688C12.5688 4 13.0688 4.5 13.0688 5.1V12.9H12.9688ZM7.46875 1C8.66875 1 9.56875 1.9 9.76875 3H5.16875C5.36875 1.9 6.26875 1 7.46875 1ZM11.8687 3H10.7688C10.5688 1.3 9.16875 0 7.46875 0C5.76875 0 4.36875 1.3 4.16875 3H3.06875C1.86875 3 0.96875 3.9 0.96875 5.1V13C0.96875 14.1 1.86875 15 3.06875 15H11.9688C13.0688 15 14.0688 14.1 14.0688 12.9V5C13.9688 3.9 13.0687 3 11.8687 3Z" />
               </svg>
-              <span
-                id = "cart-counter" class="text-white absolute -right-1 top-1/2 inline-flex h-5 min-w-5 justify-center rounded-full bg-activeblue p-1 align-middle text-[.7rem] leading-none">0</span>
+              <span id="cart-counter"
+                class="text-white absolute -right-1 top-1/2 inline-flex h-5 min-w-5 justify-center rounded-full bg-activeblue p-1 align-middle text-[.7rem] leading-none">0</span>
             </button>
           </div>
           <!-- Mobile menu button -->
@@ -91,8 +89,8 @@
         <li class="cart-item grid grid-cols-[30px_70px_120px_1fr] items-center gap-3 p-4 text-center">
           <button
             class="remove-button hover:text-white inline-flex h-5 w-5 items-center justify-center rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
-            <svg id="iphone-items-reset" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" stroke-width="2">
+            <svg id="iphone-items-reset" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -109,7 +107,7 @@
               -
             </button>
             <span id="iphone-counter" class="inline-block h-5 min-w-5 rounded-sm px-1">1</span>
-            <button id = "iphone-plus"
+            <button id="iphone-plus"
               class="quantity-button-plus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
               +
             </button>
@@ -218,10 +216,9 @@
     <section class="bg-white text-center" id="iphone">
       <div class="grid auto-cols-fr grid-cols-1 gap-4 md:grid-cols-2">
         <div class="col-span-2">
-          <h1 class="mt-12 py-4 text-4xl font-bold">iPhone 14 Pro</h1>
-          <p class="text-lg font-normal">Big and bigger</p>
-          <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button id="buy-iphone"  class="px-4 py-2 text-activeblue">Buy now</button>
+          <h1 class="mt-12 py-4 text-6xl font-bold">iPhone 14 Pro</h1>
+          <p class="text-3xl font-normal mb-8">Big and biger</p>
+          <a href="/#iphone-section" class="px-8 py-3 text-white text-xl bg-activeblue rounded-full buy " id="buy-iphone">Buy now</a>
         </div>
         <div class="hero-left col-end-2 mt-4 place-self-end">
           <img src="static/img/section1-left-hand.png" alt="product-phone-14" />
@@ -230,20 +227,35 @@
           <img src="static/img/section1-right-hand.png" alt="product-phone-14-pro" />
         </div>
       </div>
-    </section> 
+    </section>
     <!-- Section 2 - MacBook -->
-    <section class="bg-black text-center" id="macbook">
-      <div class="grid justify-center">
-        <div class="text-white">
-          <h2 class="animate-charcter mt-12 py-4 text-4xl font-bold">
+    <section class="bg-black px-4 " id="macbook">
+      <div
+        class="grid container mx-auto md:grid-cols-12 text-center md:text-left justify-items-center md:justify-items-start items-center">
+        <div class="text-white mt-4 md:col-span-5">
+          <h2 class="animate-charcter mt-12 py-4 text-6xl font-bold">
             MacBook Pro
           </h2>
-          <p class="text-lg font-normal">Pro. Beyond.</p>
-          <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button id="buy-mac" class="px-4 py-2 text-activeblue">Buy now</button>
+          <p class="text-3xl font-normal mb-8">Pro. Beyond.</p>
+          <div class="ssd-options mb-6">
+            <p class="text-2xl mb-4">SSD</p>
+            <ul class="inline-flex space-x-4">
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">256 GB</li>
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">512 GB</li>
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">1000 GB</li>
+            </ul>
+          </div>
+          <div class="ram-options mb-7">
+            <p class="text-2xl mb-4">RAM</p>
+            <ul class="inline-flex space-x-4">
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">8 GB</li>
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">16 GB</li>
+            </ul>
+          </div>
+          <button class="px-8 py-3 text-white text-xl bg-activeblue rounded-full md:mb-20 buy " id="buy-mac">Buy now</button>
         </div>
-        <div class="hero-left mt-4">
-          <img src="static/img/section2-MacBook.jpeg" alt="product-phone-14" class="macbook-image"//>
+        <div class="mt-4 md:col-span-7">
+          <img src="static/img/section2-MacBook.jpg" alt="MacBook" class="macbook-image" />
         </div>
       </div>
     </section>
@@ -265,53 +277,46 @@
           <button id="buy-watch" class="px-4 py-2 text-activeblue">Buy now</button>
         </div>
         <div class="watch_wrapper">
-          <div class="hero-left mt-4 place-content-end inner_wrapper parallax" id="parallaxInner">
-            <img class="w-full main_watch" src="static/img/section3-Iwatch.png" alt="Iwatch" id="parallaxWatch"/>
+          <div class="hero-left mt-10 place-content-end max-w-screen-lg w-full inner_wrapper parallax" id="parallaxInner">
+            <img class="main_watch" src="static/img/section3-Iwatch.png" alt="Iwatch" id="parallaxWatch"/>
           </div>
         </div>
       </div>
     </section>
-    
-    <!-- Section 3 - 3D spline -->
-    <section class="bg-[#020102]">
-      <canvas class="container mx-auto" id="canvas3d">
-      </canvas>
-    </section>
 
-    <!-- Section 4 -->
-    <section class="text-center grid grid-cols-1 md:grid-cols-2 gap-2 px-2 mb-2" id="">
-      <div class="grid justify-center bg-black px-4">
-        <div class="text-white">
-          <h2 class="mt-14 py-2 text-3xl font-bold inline-flex gap-2 items-end leading-none">
-            <svg class="w-7 h-9 fill-white" viewBox="0 0 14 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M13.0729 5.5214C12.9799 5.5937 11.3481 6.5129 11.3481 8.5578C11.3481 10.9229 13.424 11.7595 13.486 11.7801C13.4757 11.8317 13.1555 12.9265 12.3912 14.0419C11.7096 15.0231 10.9969 16.0042 9.91251 16.0042C8.82811 16.0042 8.54921 15.3742 7.29951 15.3742C6.08081 15.3742 5.64701 16.0249 4.65551 16.0249C3.66401 16.0249 2.97201 15.116 2.17681 14.0006C1.25761 12.6889 0.514008 10.6543 0.514008 8.723C0.514008 5.6246 2.52801 3.9824 4.51091 3.9824C5.56441 3.9824 6.44221 4.6744 7.10321 4.6744C7.73321 4.6744 8.71441 3.9411 9.91241 3.9411C10.3669 3.9412 11.9988 3.9826 13.0729 5.5214ZM9.34451 2.6296C9.84021 2.0409 10.1914 1.225 10.1914 0.4091C10.1914 0.2955 10.1811 0.1819 10.1604 0.0888996C9.35481 0.1199 8.39431 0.626 7.81591 1.2973C7.36151 1.8137 6.93801 2.6296 6.93801 3.4559C6.93801 3.5798 6.95871 3.7038 6.96901 3.7451C7.02061 3.7554 7.10331 3.7658 7.18591 3.7658C7.90891 3.7657 8.81771 3.2803 9.34451 2.6296Z" />
-            </svg>
-            <span>Watch</span>
+    <!-- Section 4 - 3D Spline -->
+    <section class="bg-black px-4 mb-2" id="iphone-section">
+      <div
+        class="grid container mx-auto md:grid-cols-12 text-center md:text-left justify-items-center md:justify-items-start items-center">
+        <div class="text-white mt-4 md:col-span-5">
+          <h2 class="animate-charcter mt-12 py-4 text-6xl font-bold">
+            iPhone 14 Pro
           </h2>
-
-          <p class="text-sm font-medium uppercase text-[#C42025] pb-2 tracking-widest">Series 8</p>
-          <p class="text-lg font-normal">A healthy leap ahead.</p>
-          <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue" id="buy-watch-2">Buy now</button>
+          <p class="text-3xl font-normal mb-8">Customize and use</p>
+          <div class="ssd-options mb-6">
+            <p class="text-2xl mb-4">SSD</p>
+            <ul class="inline-flex space-x-4">
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">256 GB</li>
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">512 GB</li>
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">1000 GB</li>
+            </ul>
+          </div>
+          <div class="ram-options mb-7">
+            <p class="text-2xl mb-4">RAM</p>
+            <ul class="inline-flex space-x-4">
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">8 GB</li>
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">16 GB</li>
+            </ul>
+          </div>
+          <button class="px-8 py-3 text-white text-xl bg-activeblue rounded-full md:mb-20 buy " id="buy-watch-2">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end">
-          <img class="" src="static/img/section4-Iwatch_front.png" alt="Iwatch" />
-        </div>
-      </div>
-      <div class="grid justify-center bg-black px-4">
-        <div class="text-white">
-          <h2 class="mt-14 py-2 text-3xl font-bold leading-none"> AirPods Pro
-          </h2>
-          <p class="text-lg font-normal">Rebuilt from the sound up.</p>
-          <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue" id="buy-airpods">Buy now</button>
-        </div>
-        <div class="hero-left mt-4 place-content-end">
-          <img class="" src="static/img/section4-headphones.png" alt="headphones" />
+        <div class="mt-4 md:col-span-7">
+          <canvas class="max-w-full" id="canvas3d"></canvas>
         </div>
       </div>
     </section>
+
+
     <!-- Section 5 -->
     <section class="text-center grid grid-cols-1 md:grid-cols-2 gap-2 px-2 mb-2" id="">
       <div class="grid justify-center bg-bglightgray px-4">
@@ -329,7 +334,7 @@
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button class="px-4 py-2 text-activeblue" id="buy-watch-3">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end">
+        <div class="hero-left mt-4 place-content-end  max-w-sm py-10">
           <img class="watches" src="static/img/section5-IWatches.png" alt="IWatches" />
         </div>
       </div>
@@ -346,12 +351,46 @@
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button class="px-4 py-2 text-activeblue" id="buy-fitness">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end">
+        <div class="hero-left mt-4 place-content-end max-w-sm py-10">
           <img class="fitness" src="static/img/section5-Iphones.png" alt="Iphones" />
         </div>
       </div>
     </section>
     <!-- Section 6 -->
+    <section class="text-center grid grid-cols-1 md:grid-cols-2 gap-2 px-2 mb-2" id="">
+      <div class="grid justify-center bg-black px-4">
+        <div class="text-white">
+          <h2 class="mt-14 py-2 text-3xl font-bold inline-flex gap-2 items-end leading-none">
+            <svg class="w-7 h-9 fill-white" viewBox="0 0 14 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M13.0729 5.5214C12.9799 5.5937 11.3481 6.5129 11.3481 8.5578C11.3481 10.9229 13.424 11.7595 13.486 11.7801C13.4757 11.8317 13.1555 12.9265 12.3912 14.0419C11.7096 15.0231 10.9969 16.0042 9.91251 16.0042C8.82811 16.0042 8.54921 15.3742 7.29951 15.3742C6.08081 15.3742 5.64701 16.0249 4.65551 16.0249C3.66401 16.0249 2.97201 15.116 2.17681 14.0006C1.25761 12.6889 0.514008 10.6543 0.514008 8.723C0.514008 5.6246 2.52801 3.9824 4.51091 3.9824C5.56441 3.9824 6.44221 4.6744 7.10321 4.6744C7.73321 4.6744 8.71441 3.9411 9.91241 3.9411C10.3669 3.9412 11.9988 3.9826 13.0729 5.5214ZM9.34451 2.6296C9.84021 2.0409 10.1914 1.225 10.1914 0.4091C10.1914 0.2955 10.1811 0.1819 10.1604 0.0888996C9.35481 0.1199 8.39431 0.626 7.81591 1.2973C7.36151 1.8137 6.93801 2.6296 6.93801 3.4559C6.93801 3.5798 6.95871 3.7038 6.96901 3.7451C7.02061 3.7554 7.10331 3.7658 7.18591 3.7658C7.90891 3.7657 8.81771 3.2803 9.34451 2.6296Z" />
+            </svg>
+            <span>Watch</span>
+          </h2>
+
+          <p class="text-sm font-medium uppercase text-[#C42025] pb-2 tracking-widest">Series 8</p>
+          <p class="text-lg font-normal">A healthy leap ahead.</p>
+          <button class="px-4 py-2 text-activeblue">Learn more</button>
+          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+        </div>
+        <div class="hero-left mt-4 place-content-end pt-10">
+          <img class="" src="static/img/section4-Iwatch_front.png" alt="Iwatch" />
+        </div>
+      </div>
+      <div class="grid justify-center bg-black px-4" id="airpods">
+        <div class="text-white">
+          <h2 class="mt-14 py-2 text-3xl font-bold leading-none"> AirPods Pro
+          </h2>
+          <p class="text-lg font-normal">Rebuilt from the sound up.</p>
+          <button class="px-4 py-2 text-activeblue">Learn more</button>
+          <button class="px-4 py-2 text-activeblue buy"  id="buy-watch-2">Buy now</button>
+        </div>
+        <div class="hero-left mt-4 place-content-end pt-10">
+          <img class="" src="static/img/section4-headphones.png" alt="headphones" />
+        </div>
+      </div>
+    </section>
+    <!-- Section 7 -->
     <section class="text-center grid grid-cols-1 md:grid-cols-2 gap-2 px-2 mb-2" id="">
       <div class="grid justify-center bg-[#FBFBFD] px-4">
         <div class="text-primary">
@@ -362,7 +401,7 @@
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button class="px-4 py-2 text-activeblue" id="buy-mac-air">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end">
+        <div class="hero-left mt-4 place-content-end py-10">
           <img class="air" src="static/img/section6-Macbooks.png" alt="Macbooks" />
         </div>
       </div>
@@ -379,7 +418,7 @@
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button class="px-4 py-2 text-activeblue" id="buy-card">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end">
+        <div class="hero-left mt-4 place-content-end py-10">
           <img class="card" src="static/img/section6-card.png" alt="card" />
         </div>
       </div>
