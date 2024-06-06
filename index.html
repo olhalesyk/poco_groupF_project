@@ -11,9 +11,11 @@
   <script defer src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.10/dist/cdn.min.js"></script>
+  <script defer src="https://unpkg.com/@splinetool/runtime"></script>
   <!-- Custom scripts -->
   <script defer src="static/js/script.js"></script>
 </head>
+
 
 <body class="relative font-display" x-data="{ isCartOpen: false, isOpen: false }">
   <div class="scroll-watcher"></div>
@@ -219,7 +221,7 @@
           <h1 class="mt-12 py-4 text-4xl font-bold">iPhone 14 Pro</h1>
           <p class="text-lg font-normal">Big and bigger</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button id="buy-iphone"  class="px-4 py-2 text-activeblue">Buy now</button>
         </div>
         <div class="hero-left col-end-2 mt-4 place-self-end">
           <img src="static/img/section1-left-hand.png" alt="product-phone-14" />
@@ -228,11 +230,7 @@
           <img src="static/img/section1-right-hand.png" alt="product-phone-14-pro" />
         </div>
       </div>
-    </section>
-    <!-- Section 2 - 3D test -->
-    <section class="" id="canvas3d">
-
-    </section>
+    </section> 
     <!-- Section 2 - MacBook -->
     <section class="bg-black text-center" id="macbook">
       <div class="grid justify-center">
@@ -242,7 +240,7 @@
           </h2>
           <p class="text-lg font-normal">Pro. Beyond.</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button id="buy-mac" class="px-4 py-2 text-activeblue">Buy now</button>
         </div>
         <div class="hero-left mt-4">
           <img src="static/img/section2-MacBook.jpeg" alt="product-phone-14" class="macbook-image"//>
@@ -264,7 +262,7 @@
           <p class="text-lg font-medium uppercase text-[#FD6A13] pb-2 tracking-widest">Ultra</p>
           <p class="text-lg font-normal">Adventure awaits.</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button id="buy-watch" class="px-4 py-2 text-activeblue">Buy now</button>
         </div>
         <div class="watch_wrapper">
           <div class="hero-left mt-4 place-content-end inner_wrapper parallax" id="parallaxInner">
@@ -273,6 +271,13 @@
         </div>
       </div>
     </section>
+    
+    <!-- Section 3 - 3D spline -->
+    <section class="bg-[#020102]">
+      <canvas class="container mx-auto" id="canvas3d">
+      </canvas>
+    </section>
+
     <!-- Section 4 -->
     <section class="text-center grid grid-cols-1 md:grid-cols-2 gap-2 px-2 mb-2" id="">
       <div class="grid justify-center bg-black px-4">
@@ -288,7 +293,7 @@
           <p class="text-sm font-medium uppercase text-[#C42025] pb-2 tracking-widest">Series 8</p>
           <p class="text-lg font-normal">A healthy leap ahead.</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button class="px-4 py-2 text-activeblue" id="buy-watch-2">Buy now</button>
         </div>
         <div class="hero-left mt-4 place-content-end">
           <img class="" src="static/img/section4-Iwatch_front.png" alt="Iwatch" />
@@ -300,7 +305,7 @@
           </h2>
           <p class="text-lg font-normal">Rebuilt from the sound up.</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button class="px-4 py-2 text-activeblue" id="buy-airpods">Buy now</button>
         </div>
         <div class="hero-left mt-4 place-content-end">
           <img class="" src="static/img/section4-headphones.png" alt="headphones" />
@@ -322,7 +327,7 @@
           <p class="text-sm font-medium uppercase text-[#C42025] pb-2 tracking-widest">Series 8</p>
           <p class="text-lg font-normal">A great deal to love.</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button class="px-4 py-2 text-activeblue" id="buy-watch-3">Buy now</button>
         </div>
         <div class="hero-left mt-4 place-content-end">
           <img class="watches" src="static/img/section5-IWatches.png" alt="IWatches" />
@@ -339,7 +344,7 @@
           </h2>
           <p class="text-lg font-normal max-w-48 mx-auto">Fitness for everyone. Now all you need is iPhone.</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button class="px-4 py-2 text-activeblue" id="buy-fitness">Buy now</button>
         </div>
         <div class="hero-left mt-4 place-content-end">
           <img class="fitness" src="static/img/section5-Iphones.png" alt="Iphones" />
@@ -355,7 +360,7 @@
           <p class="text-lg font-normal flex items-center justify-center gap-2">Supercharged by <img
               src="static/img/svg/chip.svg" alt="chip"></p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button class="px-4 py-2 text-activeblue" id="buy-mac-air">Buy now</button>
         </div>
         <div class="hero-left mt-4 place-content-end">
           <img class="air" src="static/img/section6-Macbooks.png" alt="Macbooks" />
@@ -372,7 +377,7 @@
           </h2>
           <p class="text-lg font-normal max-w-52 mx-auto">Get up to 3% Daily Cash back with every purchase.</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button class="px-4 py-2 text-activeblue" id="buy-card">Buy now</button>
         </div>
         <div class="hero-left mt-4 place-content-end">
           <img class="card" src="static/img/section6-card.png" alt="card" />
