@@ -27,6 +27,7 @@
     "tailwindcss": "^3.4.4"
   },
   "dependencies": {
+    "parallax-js": "^3.1.0"
     "@splinetool/runtime": "^1.4.9"
   }
 }

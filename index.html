@@ -15,9 +15,8 @@
   <!-- Custom scripts -->
   <script defer src="static/js/script.js"></script>
 </head>
-
-
 <body class="relative font-display" x-data="{ isCartOpen: false, isOpen: false }">
+  <div class="scroll-watcher"></div>
   <header class="sticky top-0 w-full bg-bgdarkgray">
     <nav class="container mx-auto">
       <div class="mx-auto flex items-center justify-between px-4 py-4">
@@ -87,7 +86,7 @@
       class="cartSidebar opacity-0 shadow-white/25 text-white bg-black fixed inset-[0_0_0_auto] z-20 grid w-full grid-rows-[50px_minmax(0px,_1fr)_100px] py-8 shadow-inner transition-all duration-300 ease-in-out sm:w-96">
       <p class="h2 px-4 pb-4 text-2xl">Shopping Cart</p>
       <ul id="cart_container" class="cart-items-list overflow-auto py-4">
-        <li id="iphone" class="cart-item grid grid-cols-[30px_70px_120px_1fr] items-center gap-3 p-4 text-center">
+        <li class="cart-item grid grid-cols-[30px_70px_120px_1fr] items-center gap-3 p-4 text-center">
           <button
             class="remove-button hover:text-white inline-flex h-5 w-5 items-center justify-center rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
             <svg id="iphone-items-reset" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
@@ -219,7 +218,7 @@
         <div class="col-span-2">
           <h1 class="mt-12 py-4 text-6xl font-bold">iPhone 14 Pro</h1>
           <p class="text-3xl font-normal mb-8">Big and biger</p>
-          <a href="/#iphone-section" class="px-8 py-3 text-white text-xl bg-activeblue rounded-full buy ">Buy now</a>
+          <a href="/#iphone-section" class="px-8 py-3 text-white text-xl bg-activeblue rounded-full buy " id="buy-iphone">Buy now</a>
         </div>
         <div class="hero-left col-end-2 mt-4 place-self-end">
           <img src="static/img/section1-left-hand.png" alt="product-phone-14" />
@@ -253,10 +252,10 @@
               <li class="bg-white/25 px-3.5 py-2 rounded-lg ">16 GB</li>
             </ul>
           </div>
-          <button class="px-8 py-3 text-white text-xl bg-activeblue rounded-full md:mb-20 buy ">Buy now</button>
+          <button class="px-8 py-3 text-white text-xl bg-activeblue rounded-full md:mb-20 buy " id="buy-mac">Buy now</button>
         </div>
         <div class="mt-4 md:col-span-7">
-          <img src="static/img/section2-MacBook.jpg" alt="MacBook" />
+          <img src="static/img/section2-MacBook.jpg" alt="MacBook" class="macbook-image" />
         </div>
       </div>
     </section>
@@ -275,10 +274,12 @@
           <p class="text-lg font-medium uppercase text-[#FD6A13] pb-2 tracking-widest">Ultra</p>
           <p class="text-lg font-normal">Adventure awaits.</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button id="buy-watch" class="px-4 py-2 text-activeblue">Buy now</button>
         </div>
-        <div class="hero-left mt-10 place-content-end max-w-screen-lg w-full">
-          <img src="static/img/section3-Iwatch.png" alt="Iwatch" />
+        <div class="watch_wrapper">
+          <div class="hero-left mt-10 place-content-end max-w-screen-lg w-full inner_wrapper parallax" id="parallaxInner">
+            <img class="main_watch" src="static/img/section3-Iwatch.png" alt="Iwatch" id="parallaxWatch"/>
+          </div>
         </div>
       </div>
     </section>
@@ -307,7 +308,7 @@
               <li class="bg-white/25 px-3.5 py-2 rounded-lg ">16 GB</li>
             </ul>
           </div>
-          <button class="px-8 py-3 text-white text-xl bg-activeblue rounded-full md:mb-20 buy ">Buy now</button>
+          <button class="px-8 py-3 text-white text-xl bg-activeblue rounded-full md:mb-20 buy " id="buy-watch-2">Buy now</button>
         </div>
         <div class="mt-4 md:col-span-7">
           <canvas class="max-w-full" id="canvas3d"></canvas>
@@ -331,10 +332,10 @@
           <p class="text-sm font-medium uppercase text-[#C42025] pb-2 tracking-widest">Series 8</p>
           <p class="text-lg font-normal">A great deal to love.</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button class="px-4 py-2 text-activeblue" id="buy-watch-3">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end max-w-sm py-10">
-          <img class="" src="static/img/section5-IWatches.png" alt="IWatches" />
+        <div class="hero-left mt-4 place-content-end  max-w-sm py-10">
+          <img class="watches" src="static/img/section5-IWatches.png" alt="IWatches" />
         </div>
       </div>
       <div class="grid justify-center bg-bglightgray px-4">
@@ -348,10 +349,10 @@
           </h2>
           <p class="text-lg font-normal max-w-48 mx-auto">Fitness for everyone. Now all you need is iPhone.</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button class="px-4 py-2 text-activeblue" id="buy-fitness">Buy now</button>
         </div>
         <div class="hero-left mt-4 place-content-end max-w-sm py-10">
-          <img class="" src="static/img/section5-Iphones.png" alt="Iphones" />
+          <img class="fitness" src="static/img/section5-Iphones.png" alt="Iphones" />
         </div>
       </div>
     </section>
@@ -382,7 +383,7 @@
           </h2>
           <p class="text-lg font-normal">Rebuilt from the sound up.</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button class="px-4 py-2 text-activeblue buy"  id="buy-watch-2">Buy now</button>
         </div>
         <div class="hero-left mt-4 place-content-end pt-10">
           <img class="" src="static/img/section4-headphones.png" alt="headphones" />
@@ -398,10 +399,10 @@
           <p class="text-lg font-normal flex items-center justify-center gap-2">Supercharged by <img
               src="static/img/svg/chip.svg" alt="chip"></p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button class="px-4 py-2 text-activeblue" id="buy-mac-air">Buy now</button>
         </div>
         <div class="hero-left mt-4 place-content-end py-10">
-          <img class="" src="static/img/section6-Macbooks.png" alt="Macbooks" />
+          <img class="air" src="static/img/section6-Macbooks.png" alt="Macbooks" />
         </div>
       </div>
       <div class="grid justify-center bg-[#FBFBFD] px-4">
@@ -415,10 +416,10 @@
           </h2>
           <p class="text-lg font-normal max-w-52 mx-auto">Get up to 3% Daily Cash back with every purchase.</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <button class="px-4 py-2 text-activeblue" id="buy-card">Buy now</button>
         </div>
         <div class="hero-left mt-4 place-content-end py-10">
-          <img class="" src="static/img/section6-card.png" alt="card" />
+          <img class="card" src="static/img/section6-card.png" alt="card" />
         </div>
       </div>
     </section>
