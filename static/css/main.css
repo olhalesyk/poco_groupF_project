@@ -169,7 +169,13 @@
   position: fixed;
   top: 0;
   z-index: 1000;
-  background-color: cadetblue;
+  background: linear-gradient(
+    -225deg,
+    #0641ff 0%,
+    #7e34ac 27%,
+    #ff1361 67%,
+    #0661ff 100%
+  );
   width: 100%;
   scale: 0 1;
   transform-origin: left;
@@ -226,7 +232,6 @@
 
 /* Parallax effect to main watch */
 .watch_wrapper {
-  height: 80vh;
   overflow-y: auto;
   overflow-x: hidden;
   perspective: 10px;
