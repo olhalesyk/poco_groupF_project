@@ -1,4 +1,4 @@
-const jsonFilePath = './static/js/data.json';
+const jsonFilePath = "./static/js/data.json";
 
 //user list
 let cartList = [];
@@ -29,6 +29,7 @@ fetch(jsonFilePath)
   .catch((error) => {
     console.error("Error fetching JSON:", error);
   });
+
 
 //test:
 clearCart();
@@ -65,8 +66,6 @@ Object.values(buyItemsTag).forEach((element) => {
     addItemToCart();
   });
 });
-
-
 
 //listeners:
 // on the main page
@@ -131,6 +130,14 @@ function addItemToCart(itemId, color) {
       //iphone pro
       productToCart = (Object.values(allProducts)[0][1]);
       break;
+
+
+function addItemToCart() {
+  //item
+  //test
+  let iphone = Object.values(allProducts)[0][0];
+  iphone.color = "GRERER";
+  alert(iphone);
 
       case buyMacBookTag.id:
         //MacBook
@@ -230,7 +237,7 @@ function updateCartList() {
   // console.log(cartList.length);
   let iphoneCounterTag = document.querySelector("#cart-counter");
   iphoneCounterTag.textContent = cartList.length;
- 
+
   //TODO: Bad Idea, working tempararly
   //svg: product-item-reset
   //quantity-btn-plus
