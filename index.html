@@ -35,7 +35,7 @@
             <div class="-mx-4 flex flex-col px-2 text-base md:mx-10 md:flex-row md:items-center md:py-0">
               <a href="#" x-cloak @click="isOpen = !isOpen"
                 class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">Home</a>
-              <a href="/#iphone" x-cloak @click="isOpen = !isOpen"
+              <a href="/#iphone-section" x-cloak @click="isOpen = !isOpen"
                 class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">iPhone</a>
               <a href="/#macbook" x-cloak @click="isOpen = !isOpen"
                 class="text-white transform px-4 py-2 capitalize transition-colors duration-300 hover:text-activeblue md:mx-2">MacBook</a>
@@ -217,10 +217,9 @@
     <section class="bg-white text-center" id="iphone">
       <div class="grid auto-cols-fr grid-cols-1 gap-4 md:grid-cols-2">
         <div class="col-span-2">
-          <h1 class="mt-12 py-4 text-4xl font-bold">iPhone 14 Pro</h1>
-          <p class="text-lg font-normal">Big and biger</p>
-          <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <h1 class="mt-12 py-4 text-6xl font-bold">iPhone 14 Pro</h1>
+          <p class="text-3xl font-normal mb-8">Big and biger</p>
+          <a href="/#iphone-section" class="px-8 py-3 text-white text-xl bg-activeblue rounded-full buy ">Buy now</a>
         </div>
         <div class="hero-left col-end-2 mt-4 place-self-end">
           <img src="static/img/section1-left-hand.png" alt="product-phone-14" />
@@ -231,18 +230,33 @@
       </div>
     </section>
     <!-- Section 2 - MacBook -->
-    <section class="bg-black text-center" id="macbook">
-      <div class="grid justify-center">
-        <div class="text-white">
-          <h2 class="animate-charcter mt-12 py-4 text-4xl font-bold">
+    <section class="bg-black px-4 " id="macbook">
+      <div
+        class="grid container mx-auto md:grid-cols-12 text-center md:text-left justify-items-center md:justify-items-start items-center">
+        <div class="text-white mt-4 md:col-span-5">
+          <h2 class="animate-charcter mt-12 py-4 text-6xl font-bold">
             MacBook Pro
           </h2>
-          <p class="text-lg font-normal">Pro. Beyond.</p>
-          <button class="px-4 py-2 text-activeblue">Learn more</button>
-          <button class="px-4 py-2 text-activeblue buy">Buy now</button>
+          <p class="text-3xl font-normal mb-8">Pro. Beyond.</p>
+          <div class="ssd-options mb-6">
+            <p class="text-2xl mb-4">SSD</p>
+            <ul class="inline-flex space-x-4">
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">256 GB</li>
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">512 GB</li>
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">1000 GB</li>
+            </ul>
+          </div>
+          <div class="ram-options mb-7">
+            <p class="text-2xl mb-4">RAM</p>
+            <ul class="inline-flex space-x-4">
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">8 GB</li>
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">16 GB</li>
+            </ul>
+          </div>
+          <button class="px-8 py-3 text-white text-xl bg-activeblue rounded-full md:mb-20 buy ">Buy now</button>
         </div>
-        <div class="hero-left mt-4">
-          <img src="static/img/section2-MacBook.jpeg" alt="product-phone-14" />
+        <div class="mt-4 md:col-span-7">
+          <img src="static/img/section2-MacBook.jpg" alt="MacBook" />
         </div>
       </div>
     </section>
@@ -270,9 +284,35 @@
     </section>
 
     <!-- Section 4 - 3D Spline -->
-    <section class="bg-[#020102] mb-2">
-      <canvas class="container mx-auto" id="canvas3d">
-      </canvas>
+    <section class="bg-black px-4 mb-2" id="iphone-section">
+      <div
+        class="grid container mx-auto md:grid-cols-12 text-center md:text-left justify-items-center md:justify-items-start items-center">
+        <div class="text-white mt-4 md:col-span-5">
+          <h2 class="animate-charcter mt-12 py-4 text-6xl font-bold">
+            iPhone 14 Pro
+          </h2>
+          <p class="text-3xl font-normal mb-8">Customize and use</p>
+          <div class="ssd-options mb-6">
+            <p class="text-2xl mb-4">SSD</p>
+            <ul class="inline-flex space-x-4">
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">256 GB</li>
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">512 GB</li>
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">1000 GB</li>
+            </ul>
+          </div>
+          <div class="ram-options mb-7">
+            <p class="text-2xl mb-4">RAM</p>
+            <ul class="inline-flex space-x-4">
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">8 GB</li>
+              <li class="bg-white/25 px-3.5 py-2 rounded-lg ">16 GB</li>
+            </ul>
+          </div>
+          <button class="px-8 py-3 text-white text-xl bg-activeblue rounded-full md:mb-20 buy ">Buy now</button>
+        </div>
+        <div class="mt-4 md:col-span-7">
+          <canvas class="max-w-full" id="canvas3d"></canvas>
+        </div>
+      </div>
     </section>
 
 
