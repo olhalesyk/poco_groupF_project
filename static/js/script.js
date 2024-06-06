@@ -223,6 +223,7 @@ function updateCartList() {
         //product quantity = 0 and remove Item from cartContainer
         updateQuantityToZero(product.id);
         cartItemsContainerTag.removeChild(itemIntoTheCart);
+        updateCartCounter();
 
         console.log("Remove:");
         console.log(cartList);
