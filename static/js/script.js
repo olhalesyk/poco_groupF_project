@@ -38,7 +38,7 @@ clearCart();
 let buyIphoneTag = document.getElementById("buy-iphone"); 
 let buyMacBookTag = document.getElementById("buy-mac");
 let buyWatchTag = document.getElementById("buy-watch"); 
-let buyWatch2Tag = document.getElementById("buy-watch-2"); 
+let butIphoneProTag = document.getElementById("buy-iphone-pro"); 
 let buyWatch3Tag = document.getElementById("buy-watch-3"); 
 let buyAirPodsTag = document.getElementById("buy-airpods"); 
 let buyFitnessTag = document.getElementById("buy-fitness"); 
@@ -70,24 +70,24 @@ Object.values(buyItemsTag).forEach((element) => {
 //listeners:
 // on the main page
 let color = "default";
-buyIphoneTag.addEventListener("click", () => {
-  addItemToCart(buyIphoneTag.id, color);
-});
+// buyIphoneTag.addEventListener("click", () => {
+//   addItemToCart(buyIphoneTag.id, color);
+// });
 buyMacBookTag.addEventListener("click", () => {
   addItemToCart(buyMacBookTag.id, color);
 });
 buyWatchTag.addEventListener("click", () => {
   addItemToCart(buyWatchTag.id, color);
 });
-buyWatch2Tag.addEventListener("click", () => {
-  addItemToCart(buyWatch2Tag.id, color);
+butIphoneProTag.addEventListener("click", () => {
+  addItemToCart(butIphoneProTag.id, color);
 });
 buyWatch3Tag.addEventListener("click", () => {
   addItemToCart(buyWatch3Tag.id, color);
 });
-buyAirPodsTag.addEventListener("click", () => {
-  addItemToCart(buyAirPodsTag.id, color);
-});
+// buyAirPodsTag.addEventListener("click", () => {
+//   addItemToCart(buyAirPodsTag.id, color);
+// });
 buyFitnessTag.addEventListener("click", () => {
   addItemToCart(buyFitnessTag.id, color);
 });
@@ -126,18 +126,10 @@ function addItemToCart(itemId, color) {
   let productToCart = null;
 
   switch (itemId) {
-    case buyIphoneTag.id:
+    case buyIphoneTag.id, butIphoneProTag.id:
       //iphone pro
       productToCart = (Object.values(allProducts)[0][1]);
       break;
-
-
-function addItemToCart() {
-  //item
-  //test
-  let iphone = Object.values(allProducts)[0][0];
-  iphone.color = "GRERER";
-  alert(iphone);
 
       case buyMacBookTag.id:
         //MacBook
@@ -148,9 +140,9 @@ function addItemToCart() {
           productToCart = (Object.values(allProducts)[0][5]);
           break;
 
-          case buyAirPodsTag.id:
-            productToCart = (Object.values(allProducts)[0][6]);
-            break;
+          // case buyAirPodsTag.id:
+          //   productToCart = (Object.values(allProducts)[0][6]);
+          //   break;
 
 
             case buyMacBookAirTag:
@@ -158,10 +150,10 @@ function addItemToCart() {
               break;
   
 
-              //todo: Fitness, Card, Stream - is needed the Obj-data
-              case buyMacBookAirTag:
-                productToCart = (Object.values(allProducts)[0][2]);
-                break;
+              // //todo: Fitness, Card, Stream - is needed the Obj-data
+              // case buyMacBookAirTag:
+              //   productToCart = (Object.values(allProducts)[0][2]);
+              //   break;
     
 
 
@@ -181,7 +173,8 @@ function addItemToCart() {
 
 
   for (const productInTheCart of cartList) {
-
+    console.log(productToCart);
+    console.log(productToCart.id);
     if (productInTheCart.id === productToCart.id) {
       console.log("Proudct is already in the cart.");
       //add one more product
@@ -199,8 +192,7 @@ function addItemToCart() {
     return cartList;
   });
  
-  console.log("cartList");
-  console.log(cartList);
+ 
   updateCartList();
 }
 
@@ -217,14 +209,21 @@ function minusItemFromCart() {
   updateCartList();
 }
 
-function decreaseItems() {}
+function decreaseItems() {
+
+
+  if (product.quantityInCart === 0) {
+    let removeChild = product.name;
+    console.log(removeChild);
+    cartItemsContainerTag.removeChild();
+  }
+}
 
 function resetItems() {
   saveToLocalStorage();
   getTitle();
 
   cartList.length = 0;
-
   updateCartList();
 }
 
@@ -273,7 +272,13 @@ function updateCartList() {
 
   
 
-  cartItemsContainerTag.appendChild(element);
+    for (const product of cartList) {
+
+      console.log(`${product.name}: ${product.quantityInCart}`);
+          if (product.quantityInCart === 1) {
+            cartItemsContainerTag.appendChild(element);
+          }
+        }
   
   //listeners:
   document.querySelector("#product-item-reset").addEventListener("click", () => {
