@@ -1,26 +1,4 @@
 const jsonFilePath = "./static/js/data.json";
-<<<<<<< HEAD
-// Iphone possible options
-// ["Black", "White", "Blue", "Red", "Green"]
-// ["128GB", "256GB", "512GB"]
-//Apple objects
-let allProducts = null;
-fetch(jsonFilePath)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Failed to fetch JSON");
-    }
-    return response.json();
-  })
-  .then((data) => {
-    allProducts = data;
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error("Error fetching JSON:", error);
-  });
-=======
->>>>>>> origin
 
 //user list
 let cartList = [];
@@ -57,10 +35,6 @@ fetch(jsonFilePath)
 clearCart();
 // hideCartItems();
 
-<<<<<<< HEAD
-let buyItemsTag = document.getElementsByClassName("buy");
-
-=======
 let buyIphoneTag = document.getElementById("buy-iphone"); 
 let buyMacBookTag = document.getElementById("buy-mac");
 let buyWatchTag = document.getElementById("buy-watch"); 
@@ -84,7 +58,6 @@ let buyCardTag = document.getElementById("buy-card");
 
 let buyItemsTag = document.getElementsByClassName("buy");
 
->>>>>>> origin
 Object.values(buyItemsTag).forEach((element) => {
   element.addEventListener("click", () => {
     let iphone = document.querySelector("#iphone");
@@ -125,8 +98,6 @@ buyCardTag.addEventListener("click", () => {
   addItemToCart(buyCardTag.id, color);
 });
 
-<<<<<<< HEAD
-=======
 
 // document.querySelector("#iphone-items-reset").addEventListener("click", () => {
 //   resetItems();
@@ -161,7 +132,6 @@ function addItemToCart(itemId, color) {
       break;
 
 
->>>>>>> origin
 function addItemToCart() {
   //item
   //test
@@ -268,14 +238,6 @@ function updateCartList() {
   let iphoneCounterTag = document.querySelector("#cart-counter");
   iphoneCounterTag.textContent = cartList.length;
 
-<<<<<<< HEAD
-  console.log(cartList);
-  cartList.forEach((element) => {
-    // if (cartList.count > 0) {
-    //   // showTheItemWithColor
-    // }
-  });
-=======
   //TODO: Bad Idea, working tempararly
   //svg: product-item-reset
   //quantity-btn-plus
@@ -308,7 +270,6 @@ function updateCartList() {
             </button>
           </div>
         </li>`;
->>>>>>> origin
 
   
 
@@ -339,13 +300,6 @@ function clearCart() {
 }
 
 function hideCartItems() {
-<<<<<<< HEAD
-  console.log("Hide Items");
-  for (const child of cartTag.children) {
-    console.log(child);
-    child.style.visibility = "hidden";
-  }
-=======
   // console.log("Hide Items");
   for (const child of cartTag.children) {
     // console.log(child);
@@ -356,7 +310,6 @@ function hideCartItems() {
       console.log(child);
       child.style.visibility =  "hidden";
     }
->>>>>>> origin
 }
 
 //TODO: Local Storage.
@@ -370,11 +323,7 @@ function saveToLocalStorage() {
   // localStorage.setItem('user', JSON.stringify(userObj))
 
   localStorage.setItem("cart", JSON.stringify(cartList[0]));
-<<<<<<< HEAD
-  console.log(cartList);
-=======
   // console.log(cartList);
->>>>>>> origin
   alert("Cart is saved.");
 }
 
@@ -391,8 +340,6 @@ function getTitle() {
     console.log("User data not found in local storage");
   }
 }
-<<<<<<< HEAD
-=======
 
 //checkout
 function checkout() {
@@ -407,5 +354,3 @@ function getFormInfo() {
   //etc
 
 }
-
->>>>>>> origin
