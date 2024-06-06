@@ -9,16 +9,16 @@ let cartItemsContainerTag = document.querySelector("#cart_container");
 // Iphone possible options
 // ["Black", "White", "Blue", "Red", "Green"]
 // ["128GB", "256GB", "512GB"]
-//Apple objects 
+//Apple objects
 let allProducts = null;
 fetch(jsonFilePath)
-  .then(response => {
+  .then((response) => {
     if (!response.ok) {
-      throw new Error('Failed to fetch JSON');
+      throw new Error("Failed to fetch JSON");
     }
     return response.json();
   })
-  .then(data => {
+  .then((data) => {
     allProducts = data;
     //initial cartList with ObjProducts: quantity = 0
     console.log(allProducts["products"]);
@@ -26,11 +26,9 @@ fetch(jsonFilePath)
       cartList.push(product);
     }  
   })
-  .catch(error => {
-    console.error('Error fetching JSON:', error);
-  }); 
-
-
+  .catch((error) => {
+    console.error("Error fetching JSON:", error);
+  });
 
 //test:
 clearCart();
@@ -55,6 +53,23 @@ let buyCardTag = document.getElementById("buy-card");
 //   addItemToCart();
 //   });
 // });
+
+
+let buyItemsTag = document.getElementsByClassName("buy");
+
+Object.values(buyItemsTag).forEach((element) => {
+  element.addEventListener("click", () => {
+    let iphone = document.querySelector("#iphone");
+    iphone.style.visibility = "visible";
+
+    addItemToCart();
+  });
+});
+
+//listeners:
+document.querySelector("#iphone-items-reset").addEventListener("click", () => {
+  resetItems();
+});
 
 
 //listeners:
@@ -87,9 +102,6 @@ buyMacBookAirTag.addEventListener("click", () => {
 buyCardTag.addEventListener("click", () => {
   addItemToCart(buyCardTag.id, color);
 });
-
- 
-
 
 
 // document.querySelector("#iphone-items-reset").addEventListener("click", () => {
@@ -124,6 +136,14 @@ function addItemToCart(itemId, color) {
       //iphone pro
       productToCart = (Object.values(allProducts)[0][1]);
       break;
+
+
+function addItemToCart() {
+  //item
+  //test
+  let iphone = Object.values(allProducts)[0][0];
+  iphone.color = "GRERER";
+  alert(iphone);
 
       case buyMacBookTag.id:
         //MacBook
@@ -203,13 +223,9 @@ function minusItemFromCart() {
   updateCartList();
 }
 
-function decreaseItems() {
-   
-}
+function decreaseItems() {}
 
- 
 function resetItems() {
-
   saveToLocalStorage();
   getTitle();
 
@@ -265,8 +281,6 @@ function updateCartList() {
   updateCartCounter();
 }
 
-
-
 function updateCartCounter() {
   let temp = 0;
   for (const product of cartList) {
@@ -284,27 +298,17 @@ function clearCart() {
 }
 
 function hideCartItems() {
+  // console.log("Hide Items");
+  for (const child of cartTag.children) {
+    // console.log(child);
+    child.style.visibility = "hidden";
+  }
     console.log("Hide Items");
     for (const child of cartItemsContainerTag.children) {
       console.log(child);
       child.style.visibility =  "hidden";
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //TODO: Local Storage.
 
@@ -315,30 +319,25 @@ function saveToLocalStorage() {
   //   email: "maria@mail.com"
   // }
   // localStorage.setItem('user', JSON.stringify(userObj))
-  
-  localStorage.setItem('cart', JSON.stringify(cartList[0]));
-  console.log(cartList);
+
+  localStorage.setItem("cart", JSON.stringify(cartList[0]));
+  // console.log(cartList);
   alert("Cart is saved.");
 }
 
 function getTitle() {
-    let getFromLocal = localStorage.getItem("cart");
-    console.log("getFromLocal:");
-    console.log(getFromLocal);
+  let getFromLocal = localStorage.getItem("cart");
+  console.log("getFromLocal:");
+  console.log(getFromLocal);
 
-if (getFromLocal) {
-  const jsonFromLocal = JSON.parse(getFromLocal)
+  if (getFromLocal) {
+    const jsonFromLocal = JSON.parse(getFromLocal);
     alert(getFromLocal);
     console.log(jsonFromLocal);
-
-} else {
-  console.log('User data not found in local storage')
+  } else {
+    console.log("User data not found in local storage");
+  }
 }
-
-
-}
-
-
 
 //checkout
 function checkout() {
@@ -353,3 +352,4 @@ function getFormInfo() {
   //etc
 
 }
+

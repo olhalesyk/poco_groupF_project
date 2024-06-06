@@ -25,5 +25,9 @@
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "tailwindcss": "^3.4.3"
+  },
+  "dependencies": {
+    "parallax-js": "^3.1.0"
+    "@splinetool/runtime": "^1.4.9"
   }
 }

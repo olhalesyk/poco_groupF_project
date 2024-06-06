@@ -11,11 +11,14 @@
   <script defer src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.10/dist/cdn.min.js"></script>
+  <script defer src="https://unpkg.com/@splinetool/runtime"></script>
   <!-- Custom scripts -->
   <script defer src="static/js/script.js"></script>
 </head>
 
+
 <body class="relative font-display" x-data="{ isCartOpen: false, isOpen: false }">
+  <div class="scroll-watcher"></div>
   <header class="sticky top-0 w-full bg-bgdarkgray">
     <nav class="container mx-auto">
       <div class="mx-auto flex items-center justify-between px-4 py-4">
@@ -216,7 +219,7 @@
       <div class="grid auto-cols-fr grid-cols-1 gap-4 md:grid-cols-2">
         <div class="col-span-2">
           <h1 class="mt-12 py-4 text-4xl font-bold">iPhone 14 Pro</h1>
-          <p class="text-lg font-normal">Big and biger</p>
+          <p class="text-lg font-normal">Big and bigger</p>
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button id="buy-iphone"  class="px-4 py-2 text-activeblue">Buy now</button>
         </div>
@@ -227,11 +230,7 @@
           <img src="static/img/section1-right-hand.png" alt="product-phone-14-pro" />
         </div>
       </div>
-    </section>
-    <!-- Section 2 - 3D test -->
-    <section class="" id="canvas3d">
-
-    </section>
+    </section> 
     <!-- Section 2 - MacBook -->
     <section class="bg-black text-center" id="macbook">
       <div class="grid justify-center">
@@ -244,7 +243,7 @@
           <button id="buy-mac" class="px-4 py-2 text-activeblue">Buy now</button>
         </div>
         <div class="hero-left mt-4">
-          <img src="static/img/section2-MacBook.jpeg" alt="product-phone-14" />
+          <img src="static/img/section2-MacBook.jpeg" alt="product-phone-14" class="macbook-image"//>
         </div>
       </div>
     </section>
@@ -265,11 +264,20 @@
           <button class="px-4 py-2 text-activeblue">Learn more</button>
           <button id="buy-watch" class="px-4 py-2 text-activeblue">Buy now</button>
         </div>
-        <div class="hero-left mt-4 place-content-end">
-          <img class="w-full" src="static/img/section3-Iwatch.png" alt="Iwatch" />
+        <div class="watch_wrapper">
+          <div class="hero-left mt-4 place-content-end inner_wrapper parallax" id="parallaxInner">
+            <img class="w-full main_watch" src="static/img/section3-Iwatch.png" alt="Iwatch" id="parallaxWatch"/>
+          </div>
         </div>
       </div>
     </section>
+    
+    <!-- Section 3 - 3D spline -->
+    <section class="bg-[#020102]">
+      <canvas class="container mx-auto" id="canvas3d">
+      </canvas>
+    </section>
+
     <!-- Section 4 -->
     <section class="text-center grid grid-cols-1 md:grid-cols-2 gap-2 px-2 mb-2" id="">
       <div class="grid justify-center bg-black px-4">
@@ -322,7 +330,7 @@
           <button class="px-4 py-2 text-activeblue" id="buy-watch-3">Buy now</button>
         </div>
         <div class="hero-left mt-4 place-content-end">
-          <img class="" src="static/img/section5-IWatches.png" alt="IWatches" />
+          <img class="watches" src="static/img/section5-IWatches.png" alt="IWatches" />
         </div>
       </div>
       <div class="grid justify-center bg-bglightgray px-4">
@@ -339,7 +347,7 @@
           <button class="px-4 py-2 text-activeblue" id="buy-fitness">Buy now</button>
         </div>
         <div class="hero-left mt-4 place-content-end">
-          <img class="" src="static/img/section5-Iphones.png" alt="Iphones" />
+          <img class="fitness" src="static/img/section5-Iphones.png" alt="Iphones" />
         </div>
       </div>
     </section>
@@ -355,7 +363,7 @@
           <button class="px-4 py-2 text-activeblue" id="buy-mac-air">Buy now</button>
         </div>
         <div class="hero-left mt-4 place-content-end">
-          <img class="" src="static/img/section6-Macbooks.png" alt="Macbooks" />
+          <img class="air" src="static/img/section6-Macbooks.png" alt="Macbooks" />
         </div>
       </div>
       <div class="grid justify-center bg-[#FBFBFD] px-4">
@@ -372,7 +380,7 @@
           <button class="px-4 py-2 text-activeblue" id="buy-card">Buy now</button>
         </div>
         <div class="hero-left mt-4 place-content-end">
-          <img class="" src="static/img/section6-card.png" alt="card" />
+          <img class="card" src="static/img/section6-card.png" alt="card" />
         </div>
       </div>
     </section>
