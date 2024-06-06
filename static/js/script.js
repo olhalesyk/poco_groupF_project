@@ -1,5 +1,11 @@
 const jsonFilePath = './static/js/data.json';
 
+//user list
+let cartList = [];
+let cartItemsCounter = 0;
+let cartItemsContainerTag = document.querySelector("#cart_container");
+
+
 // Iphone possible options
 // ["Black", "White", "Blue", "Red", "Green"]
 // ["128GB", "256GB", "512GB"]
@@ -14,18 +20,17 @@ fetch(jsonFilePath)
   })
   .then(data => {
     allProducts = data;
-    // console.log(data);
+    //initial cartList with ObjProducts: quantity = 0
+    console.log(allProducts["products"]);
+    for (const product of Object.values(allProducts["products"])) {
+      cartList.push(product);
+    }  
   })
   .catch(error => {
     console.error('Error fetching JSON:', error);
   }); 
 
 
-
-//user list
-let cartList = [];
-let cartItemsCounter = 0;
-let cartItemsContainerTag = document.querySelector("#cart_container");
 
 //test:
 clearCart();
@@ -108,8 +113,11 @@ buyCardTag.addEventListener("click", () => {
 // });
 
 
-function addItemToCart(itemId, color) { //item
+
+//itemId - id of the tag
+function addItemToCart(itemId, color) { 
   let productToCart = null;
+  let quantityInCart = 0;
 
   switch (itemId) {
     case buyIphoneTag.id:
@@ -149,9 +157,36 @@ function addItemToCart(itemId, color) { //item
       break;
   }
 
+  //  "id": 1, "name": "iPhone 14",
+  //  "id": 2, "name": "iPhone 14 Pro", 
+  //  "id": 3,  "name": "MacBook Air",
+  //  "id": 4,"name": "MacBook Pro",
+  //  "id": 5,"name": "iPad Pro",
+  //  "id": 6, "name": "Apple Watch Series 8",
+  //  "id": 7, "name": "AirPods Pro",
 
 
-  cartList.push(productToCart);
+  for (const productInTheCart of cartList) {
+
+    if (productInTheCart.id === productToCart.id) {
+      console.log("Proudct is already in the cart.");
+      //add one more product
+      productToCart.quantityInCart += 1;
+      console.log(cartList);
+    }
+  }
+  
+
+  //replace a product with the new quantity
+  cartList.map((product) => {
+    if (product.id === productToCart.id) {
+      return { ...product, edition: productToCart.quantityInCart };  
+    }
+    return cartList;
+  });
+ 
+  console.log("cartList");
+  console.log(cartList);
   updateCartList();
 }
 
@@ -189,22 +224,16 @@ function fillCartWithSavedProducts() {
 }
 
 function updateCartList() {
-  console.log(cartList.length);
+  // console.log(cartList.length);
   let iphoneCounterTag = document.querySelector("#cart-counter");
   iphoneCounterTag.textContent = cartList.length;
-
-  console.log("Updated cartList:");
-  console.log(cartList);
-  cartList.forEach(element => { 
-  // if (cartList.count > 0) {
-  //   // showTheItemWithColor
-  // }
-  });
-
-
+ 
   //TODO: Bad Idea, working tempararly
+  //svg: product-item-reset
+  //quantity-btn-plus
+  //quantity-btn-minus
   const element = document.createElement('div');
-  element.innerHTML = `<li id="iphone" class="cart-item grid grid-cols-[30px_70px_120px_1fr] items-center gap-3 p-4 text-center">
+  element.innerHTML = `<li class="cart-item grid grid-cols-[30px_70px_120px_1fr] items-center gap-3 p-4 text-center">
           <button
             class="remove-button hover:text-white inline-flex h-5 w-5 items-center justify-center rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
             <svg id="iphone-items-reset" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
@@ -239,7 +268,12 @@ function updateCartList() {
 
 
 function updateCartCounter() {
-  cartItemsCounter = cartList.length;
+  let temp = 0;
+  for (const product of cartList) {
+    temp += product.quantityInCart;
+  }
+
+  cartItemsCounter = temp;
   document.querySelector("#cart-counter").textContent = cartItemsCounter;
 }
 
