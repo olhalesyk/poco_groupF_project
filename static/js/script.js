@@ -5,7 +5,6 @@ let cartList = [];
 let cartItemsCounter = 0;
 let cartItemsContainerTag = document.querySelector("#cart_container");
 
-
 // Iphone possible options
 // ["Black", "White", "Blue", "Red", "Green"]
 // ["128GB", "256GB", "512GB"]
@@ -24,48 +23,35 @@ fetch(jsonFilePath)
     console.log(allProducts["products"]);
     for (const product of Object.values(allProducts["products"])) {
       cartList.push(product);
-    }  
+    }
   })
   .catch((error) => {
     console.error("Error fetching JSON:", error);
   });
 
-
 //test:
 clearCart();
 // hideCartItems();
 
-let buyIphoneTag = document.getElementById("buy-iphone"); 
+let buyIphoneTag = document.getElementById("buy-iphone");
 let buyMacBookTag = document.getElementById("buy-mac");
-let buyWatchTag = document.getElementById("buy-watch"); 
-let butIphoneProTag = document.getElementById("buy-iphone-pro"); 
-let buyWatch3Tag = document.getElementById("buy-watch-3"); 
-let buyAirPodsTag = document.getElementById("buy-airpods"); 
-let buyFitnessTag = document.getElementById("buy-fitness"); 
-let buyMacBookAirTag = document.getElementById("buy-mac-air"); 
-let buyCardTag = document.getElementById("buy-card"); 
-// let buyStreamTag = document.getElementsByClassName("buy-iphone"); 
+let buyWatchTag = document.getElementById("buy-watch");
+let butIphoneProTag = document.getElementById("buy-iphone-pro");
+let buyWatch3Tag = document.getElementById("buy-watch-3");
+let buyAirPodsTag = document.getElementById("buy-airpods");
+let buyFitnessTag = document.getElementById("buy-fitness");
+let buyMacBookAirTag = document.getElementById("buy-mac-air");
+let buyCardTag = document.getElementById("buy-card");
+// let buyStreamTag = document.getElementsByClassName("buy-iphone");
 
 // Object.values(buyItemsTag).forEach(element => {
 //   element.addEventListener("click", () => {
-//   let iphone = document.querySelector("#iphone"); 
+//   let iphone = document.querySelector("#iphone");
 //   iphone.style.visibility = "visible";
 
 //   addItemToCart();
 //   });
 // });
-
-
-let buyItemsTag = document.getElementsByClassName("buy");
-
-Object.values(buyItemsTag).forEach((element) => {
-  element.addEventListener("click", () => {
-    let iphone = document.querySelector("#iphone");
-    iphone.style.visibility = "visible";
-
-    addItemToCart();
-  });
-});
 
 //listeners:
 // on the main page
@@ -98,7 +84,6 @@ buyCardTag.addEventListener("click", () => {
   addItemToCart(buyCardTag.id, color);
 });
 
-
 // document.querySelector("#iphone-items-reset").addEventListener("click", () => {
 //   resetItems();
 // });
@@ -119,58 +104,59 @@ buyCardTag.addEventListener("click", () => {
 //   minusItemFromCart();
 // });
 
-
-
 //itemId - id of the tag
-function addItemToCart(itemId, color) { 
+function addItemToCart(itemId) {
+  //color options
   let productToCart = null;
 
+  console.log("addItemToCart");
+  console.log(itemId);
   switch (itemId) {
-    case buyIphoneTag.id, butIphoneProTag.id:
+    case buyIphoneTag.id:
+    case butIphoneProTag.id:
+    case 2:
       //iphone pro
-      productToCart = (Object.values(allProducts)[0][1]);
+      productToCart = Object.values(allProducts)[0][1];
       break;
 
-      case buyMacBookTag.id:
-        //MacBook
-        productToCart = (Object.values(allProducts)[0][3]);
-        break;
+    case buyMacBookTag.id:
+    case 4:
+      //MacBook
+      productToCart = Object.values(allProducts)[0][3];
+      break;
 
-        case buyWatchTag.id:
-          productToCart = (Object.values(allProducts)[0][5]);
-          break;
+    case buyWatchTag.id:
+    case 6:
+      productToCart = Object.values(allProducts)[0][5];
+      break;
 
-          // case buyAirPodsTag.id:
-          //   productToCart = (Object.values(allProducts)[0][6]);
-          //   break;
+    // case buyAirPodsTag.id:
+    //   productToCart = (Object.values(allProducts)[0][6]);
+    //   break;
 
+    case buyMacBookAirTag:
+    case 3:
+      productToCart = Object.values(allProducts)[0][2];
+      break;
 
-            case buyMacBookAirTag:
-              productToCart = (Object.values(allProducts)[0][2]);
-              break;
-  
+    // //todo: Fitness, Card, Stream - is needed the Obj-data
+    // case buyMacBookAirTag:
+    //   productToCart = (Object.values(allProducts)[0][2]);
+    //   break;
 
-              // //todo: Fitness, Card, Stream - is needed the Obj-data
-              // case buyMacBookAirTag:
-              //   productToCart = (Object.values(allProducts)[0][2]);
-              //   break;
-    
-
-
-    default: 
-    productToCart = null;
-    console.log("Other products");
+    default:
+      productToCart = null;
+      console.log("Other products");
       break;
   }
 
   //  "id": 1, "name": "iPhone 14",
-  //  "id": 2, "name": "iPhone 14 Pro", 
+  //  "id": 2, "name": "iPhone 14 Pro",
   //  "id": 3,  "name": "MacBook Air",
   //  "id": 4,"name": "MacBook Pro",
   //  "id": 5,"name": "iPad Pro",
   //  "id": 6, "name": "Apple Watch Series 8",
   //  "id": 7, "name": "AirPods Pro",
-
 
   for (const productInTheCart of cartList) {
     console.log(productToCart);
@@ -182,109 +168,91 @@ function addItemToCart(itemId, color) {
       console.log(cartList);
     }
   }
-  
 
   //replace a product with the new quantity
   cartList.map((product) => {
     if (product.id === productToCart.id) {
-      return { ...product, edition: productToCart.quantityInCart };  
+      //update counters in the cart:
+      return { ...product, edition: productToCart.quantityInCart };
     }
     return cartList;
   });
- 
- 
+
   updateCartList();
 }
 
-function minusItemFromCart() {
-  //todo find the Item in cartList and remove it
-
-  //send ID of the product
-
-  // let cartCounterTag = document.querySelector(id+"-counter");
-  // let counter = cartCounterTag.textContent;
-  // cartCounterTag.textContent = counter - 1;
-
-  cartList.pop();
-  updateCartList();
-}
-
-function decreaseItems() {
-
-
-  if (product.quantityInCart === 0) {
-    let removeChild = product.name;
-    console.log(removeChild);
-    cartItemsContainerTag.removeChild();
+function decreaseItems(id) {
+  const product = cartList.find((product) => product.id === id);
+  if (product && product.quantityInCart > 0) {
+    product.quantityInCart -= 1;
   }
+  return cartList;
 }
 
-function resetItems() {
-  saveToLocalStorage();
-  getTitle();
+ 
 
-  cartList.length = 0;
-  updateCartList();
+function removeAllItemsCartList() {
+  while (cartItemsContainerTag.firstChild) {
+    cartItemsContainerTag.removeChild(cartItemsContainerTag.firstChild);
+  }
+
+  updateCartCounter();
 }
-
 
 function fillCartWithSavedProducts() {
   //when the page updates, the cart needs to be filled
 }
 
 function updateCartList() {
+  removeAllItemsCartList();
   // console.log(cartList.length);
   let iphoneCounterTag = document.querySelector("#cart-counter");
   iphoneCounterTag.textContent = cartList.length;
 
+  console.log("updateCartList");
+  console.log(cartList);
   //TODO: Bad Idea, working tempararly
-  //svg: product-item-reset
-  //quantity-btn-plus
-  //quantity-btn-minus
-  const element = document.createElement('div');
-  element.innerHTML = `<li class="cart-item grid grid-cols-[30px_70px_120px_1fr] items-center gap-3 p-4 text-center">
-          <button
-            class="remove-button hover:text-white inline-flex h-5 w-5 items-center justify-center rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
-            <svg id="product-item-reset" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-          <div class="image max-w-16 rounded-md bg-bglightgray p-3">
-            <img src="static/img/product_1/product-phone-14-pro.jpg" alt="product-phone-14-pro" />
-          </div>
-          <div class="product-info flex flex-col gap-2 text-left">
-            <div class="name">iPhone 14 Pro</div>
-            <div class="price">$0.00</div>
-          </div>
-          <div class="quantity">
-            <button id="iphone-minus"
-              class="quantity-button-minus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
-              -
-            </button>
-            <span id="iphone-counter" class="inline-block h-5 min-w-5 rounded-sm px-1">1</span>
-            <button id = "iphone-plus"
-              class="quantity-button-plus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
-              +
-            </button>
-          </div>
-        </li>`;
+  for (const product of cartList) {
+    if (product.quantityInCart > 0) {
+      let itemIntoTheCart = itemToTheCartBuilder(product);
+      cartItemsContainerTag.appendChild(itemIntoTheCart);
+      //add event listener to the item in the cart:
+      // item-${product.id}-reset
+      let resetItemTag = document.querySelector(`#item-${product.id}-reset`);
+      resetItemTag.addEventListener("click", () => {
+        //product quantity = 0 and remove Item from cartContainer
+        updateQuantityToZero(product.id);
+        cartItemsContainerTag.removeChild(itemIntoTheCart);
 
-  
+        console.log("Remove:");
+        console.log(cartList);
+      });
 
-    for (const product of cartList) {
+      let minusProductTag = document.querySelector(
+        `#quantity-btn-${product.id}-minus`,
+      );
+      minusProductTag.addEventListener("click", () => {
+        decreaseItems(product.id);
+        updateCartList();
 
-      console.log(`${product.name}: ${product.quantityInCart}`);
-          if (product.quantityInCart === 1) {
-            cartItemsContainerTag.appendChild(element);
-          }
-        }
-  
-  //listeners:
-  document.querySelector("#product-item-reset").addEventListener("click", () => {
-    resetItems();
-  });
-  
+        console.log("Minus: " + product.name);
+        console.log(cartList);
+      });
+
+      let plusProductTag = document.querySelector(
+        `#quantity-btn-${product.id}-plus`,
+      );
+      plusProductTag.addEventListener("click", () => {
+        //product quantity = 0 and remove Item from cartContainer
+        addItemToCart(product.id);
+        // updateCartList();
+
+        console.log("Plus: " + product.name);
+        console.log(cartList);
+      });
+    }
+  }
+
   updateCartCounter();
 }
 
@@ -296,6 +264,15 @@ function updateCartCounter() {
 
   cartItemsCounter = temp;
   document.querySelector("#cart-counter").textContent = cartItemsCounter;
+}
+
+function updateQuantityToZero(id) {
+  const product = cartList.find((product) => product.id === id);
+
+  if (product) {
+    product.quantityInCart = 0;
+  }
+  return cartList;
 }
 
 function clearCart() {
@@ -310,11 +287,11 @@ function hideCartItems() {
     // console.log(child);
     child.style.visibility = "hidden";
   }
-    console.log("Hide Items");
-    for (const child of cartItemsContainerTag.children) {
-      console.log(child);
-      child.style.visibility =  "hidden";
-    }
+  console.log("Hide Items");
+  for (const child of cartItemsContainerTag.children) {
+    console.log(child);
+    child.style.visibility = "hidden";
+  }
 }
 
 //TODO: Local Storage.
@@ -346,16 +323,47 @@ function getTitle() {
   }
 }
 
-//checkout
-function checkout() {
-  
+function itemToTheCartBuilder(product) {
+  const element = document.createElement("div");
+  element.innerHTML = `<li class="cart-item grid grid-cols-[30px_70px_120px_1fr] items-center gap-3 p-4 text-center">
+          <button
+            class="remove-button hover:text-white inline-flex h-5 w-5 items-center justify-center rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+            <svg id="item-${product.id}-reset" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div class="image max-w-16 rounded-md bg-bglightgray p-3">
+          <img src="${product.img}" alt="${product.alt}" />
+        </div>
+          <div class="product-info flex flex-col gap-2 text-left">
+            <div class="name">${product.name}</div>
+            <div class="price">$${product.price}</div>
+          </div>
+          <div class="quantity">
+            <button id="quantity-btn-${product.id}-minus"
+              class="quantity-button-minus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+              -
+            </button>
+            <span id="product-${product.id}-counter" class="inline-block h-5 min-w-5 rounded-sm px-1">${product.quantityInCart}</span>
+            <button id = "quantity-btn-${product.id}-plus"
+              class="quantity-button-plus hover:text-white inline-block h-5 w-5 rounded-sm bg-bglightgray leading-none text-body hover:bg-activeblue">
+              +
+            </button>
+          </div>
+        </li>`;
+
+  element.id = `item-${product.id}-in-the-cart`;
+
+  return element;
 }
+
+//checkout
+function checkout() {}
 
 function getFormInfo() {
   //combine the filled in user information for checkout
-  
   //name
   //surname
   //etc
-
 }
