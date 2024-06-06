@@ -20,7 +20,6 @@ fetch(jsonFilePath)
   .then((data) => {
     allProducts = data;
     //initial cartList with ObjProducts: quantity = 0
-    console.log(allProducts["products"]);
     for (const product of Object.values(allProducts["products"])) {
       cartList.push(product);
     }
@@ -31,12 +30,36 @@ fetch(jsonFilePath)
 
 //test:
 clearCart();
-// hideCartItems();
+function clearCart() {
+  while (cartItemsContainerTag.firstChild) {
+    cartItemsContainerTag.removeChild(cartItemsContainerTag.firstChild);
+  }
+}
+
+// //onStart the page:
+// document.addEventListener("DOMContentLoaded", () => {
+//   // Initially load products from local storage
+//   loadProductsFromLocalStorage();
+// });
+
+// Add event listener for save button
+document
+.getElementById("save-to-local")
+.addEventListener("click", saveProductsToLocalStorage);
+
+document.querySelector("#clear-local").addEventListener("click", ()=>{
+  //test Load:
+  loadProductsFromLocalStorage();
+  
+  // localStorage.clear();
+  // console.log("Local Storage has been cleared.");
+});
 
 let buyIphoneTag = document.getElementById("buy-iphone");
 let buyMacBookTag = document.getElementById("buy-mac");
 let buyWatchTag = document.getElementById("buy-watch");
 let butIphoneProTag = document.getElementById("buy-iphone-pro");
+let buyWatch2Tag = document.getElementById("buy-watch-2");
 let buyWatch3Tag = document.getElementById("buy-watch-3");
 let buyAirPodsTag = document.getElementById("buy-airpods");
 let buyFitnessTag = document.getElementById("buy-fitness");
@@ -68,12 +91,15 @@ buyWatchTag.addEventListener("click", () => {
 butIphoneProTag.addEventListener("click", () => {
   addItemToCart(butIphoneProTag.id, color);
 });
+buyWatch2Tag.addEventListener("click", () => {
+  addItemToCart(buyWatch3Tag.id, color);
+});
 buyWatch3Tag.addEventListener("click", () => {
   addItemToCart(buyWatch3Tag.id, color);
 });
-// buyAirPodsTag.addEventListener("click", () => {
-//   addItemToCart(buyAirPodsTag.id, color);
-// });
+buyAirPodsTag.addEventListener("click", () => {
+  addItemToCart(buyAirPodsTag.id, color);
+});
 buyFitnessTag.addEventListener("click", () => {
   addItemToCart(buyFitnessTag.id, color);
 });
@@ -109,8 +135,6 @@ function addItemToCart(itemId) {
   //color options
   let productToCart = null;
 
-  console.log("addItemToCart");
-  console.log(itemId);
   switch (itemId) {
     case buyIphoneTag.id:
     case butIphoneProTag.id:
@@ -126,27 +150,28 @@ function addItemToCart(itemId) {
       break;
 
     case buyWatchTag.id:
+    case buyWatch3Tag.id:
     case 6:
       productToCart = Object.values(allProducts)[0][5];
       break;
 
-    // case buyAirPodsTag.id:
-    //   productToCart = (Object.values(allProducts)[0][6]);
-    //   break;
+    case buyAirPodsTag.id:
+    case 7:
+      productToCart = Object.values(allProducts)[0][6];
+      break;
 
-    case buyMacBookAirTag:
+    case buyMacBookAirTag.id:
     case 3:
       productToCart = Object.values(allProducts)[0][2];
       break;
 
-    // //todo: Fitness, Card, Stream - is needed the Obj-data
-    // case buyMacBookAirTag:
+    //todo: Fitness, Card, Stream - is needed the Obj-data
+    // case buyFitnessTag:
     //   productToCart = (Object.values(allProducts)[0][2]);
     //   break;
 
     default:
       productToCart = null;
-      console.log("Other products");
       break;
   }
 
@@ -158,14 +183,12 @@ function addItemToCart(itemId) {
   //  "id": 6, "name": "Apple Watch Series 8",
   //  "id": 7, "name": "AirPods Pro",
 
+  console.log("CartList:");
+  console.log(cartList);
   for (const productInTheCart of cartList) {
-    console.log(productToCart);
-    console.log(productToCart.id);
     if (productInTheCart.id === productToCart.id) {
-      console.log("Proudct is already in the cart.");
       //add one more product
       productToCart.quantityInCart += 1;
-      console.log(cartList);
     }
   }
 
@@ -189,8 +212,6 @@ function decreaseItems(id) {
   return cartList;
 }
 
- 
-
 function removeAllItemsCartList() {
   while (cartItemsContainerTag.firstChild) {
     cartItemsContainerTag.removeChild(cartItemsContainerTag.firstChild);
@@ -205,12 +226,9 @@ function fillCartWithSavedProducts() {
 
 function updateCartList() {
   removeAllItemsCartList();
-  // console.log(cartList.length);
   let iphoneCounterTag = document.querySelector("#cart-counter");
   iphoneCounterTag.textContent = cartList.length;
 
-  console.log("updateCartList");
-  console.log(cartList);
   //TODO: Bad Idea, working tempararly
   for (const product of cartList) {
     if (product.quantityInCart > 0) {
@@ -224,9 +242,7 @@ function updateCartList() {
         updateQuantityToZero(product.id);
         cartItemsContainerTag.removeChild(itemIntoTheCart);
         updateCartCounter();
-
-        console.log("Remove:");
-        console.log(cartList);
+        updateTotalAmount();
       });
 
       let minusProductTag = document.querySelector(
@@ -235,9 +251,6 @@ function updateCartList() {
       minusProductTag.addEventListener("click", () => {
         decreaseItems(product.id);
         updateCartList();
-
-        console.log("Minus: " + product.name);
-        console.log(cartList);
       });
 
       let plusProductTag = document.querySelector(
@@ -246,15 +259,12 @@ function updateCartList() {
       plusProductTag.addEventListener("click", () => {
         //product quantity = 0 and remove Item from cartContainer
         addItemToCart(product.id);
-        // updateCartList();
-
-        console.log("Plus: " + product.name);
-        console.log(cartList);
       });
     }
   }
 
   updateCartCounter();
+  updateTotalAmount();
 }
 
 function updateCartCounter() {
@@ -276,51 +286,31 @@ function updateQuantityToZero(id) {
   return cartList;
 }
 
-function clearCart() {
-  while (cartItemsContainerTag.firstChild) {
-    cartItemsContainerTag.removeChild(cartItemsContainerTag.firstChild);
-  }
+
+//CartList save to Local Storage.
+function saveProductsToLocalStorage() {
+  localStorage.setItem("products", JSON.stringify(cartList));
+  alert("Products saved to local storage!");
 }
 
-function hideCartItems() {
-  // console.log("Hide Items");
-  for (const child of cartTag.children) {
-    // console.log(child);
-    child.style.visibility = "hidden";
-  }
-  console.log("Hide Items");
-  for (const child of cartItemsContainerTag.children) {
-    console.log(child);
-    child.style.visibility = "hidden";
-  }
-}
+// get saved products from local storage
+function loadProductsFromLocalStorage() {
+  alert("Retrieve data from LocalStorage");
+  const storedProducts = localStorage.getItem("products");
 
-//TODO: Local Storage.
+  console.log("storedProd:");
+  console.log(storedProducts);
 
-function saveToLocalStorage() {
-  //JSON: to the localStorage
-  // const userObj = {
-  //   username = "Maria",
-  //   email: "maria@mail.com"
-  // }
-  // localStorage.setItem('user', JSON.stringify(userObj))
+  if (storedProducts) {
+    if (cartList.length === 0) {
+    cartList = JSON.parse(storedProducts);
+    updateCartList();
 
-  localStorage.setItem("cart", JSON.stringify(cartList[0]));
-  // console.log(cartList);
-  alert("Cart is saved.");
-}
-
-function getTitle() {
-  let getFromLocal = localStorage.getItem("cart");
-  console.log("getFromLocal:");
-  console.log(getFromLocal);
-
-  if (getFromLocal) {
-    const jsonFromLocal = JSON.parse(getFromLocal);
-    alert(getFromLocal);
-    console.log(jsonFromLocal);
+    console.log("loadProductsFromLocalStorage");
+    console.log(cartList); 
+    }
   } else {
-    console.log("User data not found in local storage");
+    alert("No products found in local storage!");
   }
 }
 
@@ -357,6 +347,15 @@ function itemToTheCartBuilder(product) {
   element.id = `item-${product.id}-in-the-cart`;
 
   return element;
+}
+
+function updateTotalAmount() {
+  let total = 0;
+  for (const prod of cartList) {
+    total += prod.quantityInCart * prod.price;
+  }
+
+  document.querySelector("#total-amount").textContent = `$` + total;
 }
 
 //checkout
