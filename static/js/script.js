@@ -125,11 +125,7 @@ buyCardTag.addEventListener("click", () => {
 function addItemToCart(itemId, color) { 
   let productToCart = null;
 
-  switch (itemId) {
-    case buyIphoneTag.id:
-      //iphone pro
-      productToCart = (Object.values(allProducts)[0][1]);
-      break;
+  
 
 
 function addItemToCart() {
@@ -138,6 +134,12 @@ function addItemToCart() {
   let iphone = Object.values(allProducts)[0][0];
   iphone.color = "GRERER";
   alert(iphone);
+
+  switch (itemId) {
+    case buyIphoneTag.id:
+      //iphone pro
+      productToCart = (Object.values(allProducts)[0][1]);
+      break;
 
       case buyMacBookTag.id:
         //MacBook
