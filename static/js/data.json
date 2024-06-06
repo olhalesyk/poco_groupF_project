@@ -3,33 +3,43 @@
       {
         "id": 1,
         "name": "iPhone 14",
+        "quantityInCart": 0,
         "category": "Smartphone",
         "price": 799,
         "color": "Black",
         "storage_options": ["128GB", "256GB", "512GB"],
-        "release_date": "2022-09-16"
+        "release_date": "2022-09-16",
+        "img": "static/img/product_1/product-phone-14-pro.jpg",
+        "alt": "product-phone-14-pro"
       },
       {
         "id": 2,
         "name": "iPhone 14 Pro", 
+        "quantityInCart": 0,
         "category": "Smartphone",
         "price": 999,
         "colors": ["Graphite", "Gold", "Silver", "Sierra Blue"],
         "storage_options": ["128GB", "256GB", "512GB", "1TB"],
-        "release_date": "2022-09-16"
+        "release_date": "2022-09-16",
+        "img": "static/img/product_1/product-phone-14-pro.jpg",
+        "alt": "product-phone-14-pro"
       },
       {
         "id": 3,
         "name": "MacBook Air",
+        "quantityInCart": 0,
         "category": "Laptop",
         "price": 999,
         "colors": ["Silver", "Space Gray", "Gold"],
         "storage_options": ["256GB", "512GB", "1TB"],
-        "release_date": "2020-11-17"
+        "release_date": "2020-11-17",
+        "img": "static/img/product_1/product-phone-14-pro.jpg",
+        "alt": "product-phone-14-pro"
       },
       {
         "id": 4,
         "name": "MacBook Pro",
+        "quantityInCart": 0,
         "category": "Laptop",
         "price": 1299,
         "colors": ["Silver", "Space Gray"],
@@ -39,6 +49,7 @@
       {
         "id": 5,
         "name": "iPad Pro",
+        "quantityInCart": 0,
         "category": "Tablet",
         "price": 799,
         "colors": ["Silver", "Space Gray"],
@@ -48,6 +59,7 @@
       {
         "id": 6,
         "name": "Apple Watch Series 8",
+        "quantityInCart": 0,
         "category": "Smartwatch",
         "price": 399,
         "colors": ["Midnight", "Starlight", "Green", "Blue", "Red"],
@@ -57,6 +69,7 @@
       {
         "id": 7,
         "name": "AirPods Pro",
+        "quantityInCart": 0,
         "category": "Earbuds",
         "price": 249,
         "colors": ["White"],
