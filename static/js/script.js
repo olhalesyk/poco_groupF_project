@@ -68,14 +68,6 @@ let buyMacBookAirTag = document.getElementById("buy-mac-air");
 let buyCardTag = document.getElementById("buy-card");
 // let buyStreamTag = document.getElementsByClassName("buy-iphone");
 
-// Object.values(buyItemsTag).forEach(element => {
-//   element.addEventListener("click", () => {
-//   let iphone = document.querySelector("#iphone");
-//   iphone.style.visibility = "visible";
-
-//   addItemToCart();
-//   });
-// });
 
 //listeners:
 // on the main page
@@ -111,25 +103,6 @@ buyCardTag.addEventListener("click", () => {
   addItemToCart(buyCardTag.id, color);
 });
 
-// document.querySelector("#iphone-items-reset").addEventListener("click", () => {
-//   resetItems();
-// });
-
-// document.querySelector("#iphone-plus").addEventListener("click", () => {
-//   addItemToCart("iphone"); //title, type or id? //:TODO
-// });
-
-// document.querySelector("#iphone-minus").addEventListener("click", () => {
-//   minusItemFromCart();
-// });
-
-// document.querySelector("#iphone-plus").addEventListener("click", () => {
-//   addItemToCart("iphone"); //title, type or id? //:TODO
-// });
-
-// document.querySelector("#iphone-minus").addEventListener("click", () => {
-//   minusItemFromCart();
-// });
 
 //itemId - id of the tag
 function addItemToCart(itemId) {
@@ -173,6 +146,7 @@ function addItemToCart(itemId) {
 
     default:
       productToCart = null;
+      console.log("Other products");
       break;
   }
 
@@ -184,8 +158,7 @@ function addItemToCart(itemId) {
   //  "id": 6, "name": "Apple Watch Series 8",
   //  "id": 7, "name": "AirPods Pro",
 
-  console.log("CartList:");
-  console.log(cartList);
+
   for (const productInTheCart of cartList) {
     if (productInTheCart.id === productToCart.id) {
       //add one more product
@@ -196,7 +169,6 @@ function addItemToCart(itemId) {
   //replace a product with the new quantity
   cartList.map((product) => {
     if (product.id === productToCart.id) {
-      //update counters in the cart:
       return { ...product, edition: productToCart.quantityInCart };
     }
     return cartList;
@@ -287,7 +259,6 @@ function updateQuantityToZero(id) {
   return cartList;
 }
 
-
 //CartList save to Local Storage.
 function saveProductsToLocalStorage() {
   localStorage.setItem("products", JSON.stringify(cartList));
@@ -304,14 +275,11 @@ function loadProductsFromLocalStorage() {
   if (storedProducts) {
     cartList = JSON.parse(storedProducts);
     updateCartList();
-
     console.log("loadProductsFromLocalStorage");
     console.log(cartList); 
   } else {
     alert("No products found in local storage!");
   }
-
-  updateCartList();
 }
 
 function itemToTheCartBuilder(product) {
@@ -345,7 +313,6 @@ function itemToTheCartBuilder(product) {
         </li>`;
 
   element.id = `item-${product.id}-in-the-cart`;
-
   return element;
 }
 
@@ -356,7 +323,44 @@ function updateTotalAmount() {
   }
 
   document.querySelector("#total-amount").textContent = `$` + total;
+  cartItemsCounter = temp;
+  document.querySelector("#cart-counter").textContent = cartItemsCounter;
 }
+
+function clearCart() {
+  while (cartItemsContainerTag.firstChild) {
+    cartItemsContainerTag.removeChild(cartItemsContainerTag.firstChild);
+  }
+}
+
+function hideCartItems() {
+  // console.log("Hide Items");
+  for (const child of cartTag.children) {
+    // console.log(child);
+    child.style.visibility = "hidden";
+  }
+  console.log("Hide Items");
+  for (const child of cartItemsContainerTag.children) {
+    console.log(child);
+    child.style.visibility = "hidden";
+  }
+}
+
+//TODO: Local Storage.
+
+function saveToLocalStorage() {
+  //JSON: to the localStorage
+  // const userObj = {
+  //   username = "Maria",
+  //   email: "maria@mail.com"
+  // }
+  // localStorage.setItem('user', JSON.stringify(userObj))
+
+  localStorage.setItem("cart", JSON.stringify(cartList[0]));
+  // console.log(cartList);
+  alert("Cart is saved.");
+}
+
 
 //checkout
 function checkout() {}
