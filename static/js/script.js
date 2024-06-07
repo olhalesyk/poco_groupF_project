@@ -47,13 +47,12 @@ document
 .getElementById("save-to-local")
 .addEventListener("click", saveProductsToLocalStorage);
 
-document.querySelector("#clear-local").addEventListener("click", ()=>{
-  //test Load:
-  loadProductsFromLocalStorage();
+// document.querySelector("#clear-local").addEventListener("click", ()=>{
+//   //test Load:
   
-  // localStorage.clear();
-  // console.log("Local Storage has been cleared.");
-});
+//   // localStorage.clear();
+//   // console.log("Local Storage has been cleared.");
+// });
 
 let buyIphoneTag = document.getElementById("buy-iphone");
 let buyMacBookTag = document.getElementById("buy-mac");
@@ -291,6 +290,8 @@ function updateQuantityToZero(id) {
 function saveProductsToLocalStorage() {
   localStorage.setItem("products", JSON.stringify(cartList));
   alert("Products saved to local storage!");
+
+  loadProductsFromLocalStorage();
 }
 
 // get saved products from local storage
@@ -298,17 +299,12 @@ function loadProductsFromLocalStorage() {
   alert("Retrieve data from LocalStorage");
   const storedProducts = localStorage.getItem("products");
 
-  console.log("storedProd:");
-  console.log(storedProducts);
-
   if (storedProducts) {
-    if (cartList.length === 0) {
     cartList = JSON.parse(storedProducts);
     updateCartList();
 
     console.log("loadProductsFromLocalStorage");
     console.log(cartList); 
-    }
   } else {
     alert("No products found in local storage!");
   }
