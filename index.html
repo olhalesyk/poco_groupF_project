@@ -199,14 +199,14 @@
       <div class="cart-footer place-content-end px-4">
         <div class="flex justify-between py-4">
           <p>Total</p>
-          <p>$0.00</p>
+          <p id="total-amount">$0.00</p>
         </div>
         <div class="cart-buttons flex cursor-pointer justify-between space-x-4 align-middle">
           <button x-cloak @click="isCartOpen = !isCartOpen" class="bg-white w-full rounded-md py-2 text-primary"
             type="button" aria-label="toggle cart">
             Close
           </button>
-          <button class="text-white w-full rounded-md bg-activeblue py-2">
+          <button id="save-to-local" class="text-white w-full rounded-md bg-activeblue py-2">
             Checkout
           </button>
         </div>
@@ -378,6 +378,7 @@
           </div>
           <button class="px-8 py-3 text-white text-xl bg-activeblue rounded-full md:mb-20 buy " id="buy-iphone-pro">Buy
             now</button>
+
         </div>
         <div class="mt-4 md:col-span-6">
           <canvas class="max-w-full" id="canvas3d"></canvas>

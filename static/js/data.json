@@ -21,7 +21,7 @@
         "colors": ["Graphite", "Gold", "Silver", "Sierra Blue"],
         "storage_options": ["128GB", "256GB", "512GB", "1TB"],
         "release_date": "2022-09-16",
-        "img": "static/img/product_1/product-phone-14-pro.jpg",
+        "img": "static/img/cart_product_pics/product-Iphone.jpg",
         "alt": "product-phone-14-pro"
       },
       {
@@ -33,7 +33,7 @@
         "colors": ["Silver", "Space Gray", "Gold"],
         "storage_options": ["256GB", "512GB", "1TB"],
         "release_date": "2020-11-17",
-        "img": "static/img/product_1/product-phone-14-pro.jpg",
+        "img": "static/img/cart_product_pics/product-macbook.jpg",
         "alt": "product-phone-14-pro"
       },
       {
@@ -44,7 +44,9 @@
         "price": 1299,
         "colors": ["Silver", "Space Gray"],
         "storage_options": ["256GB", "512GB", "1TB", "2TB"],
-        "release_date": "2021-10-18"
+        "release_date": "2021-10-18",
+        "img": "static/img/cart_product_pics/product-macbook.jpg",
+        "alt": "product-phone-14-pro"
       },
       {
         "id": 5,
@@ -54,7 +56,9 @@
         "price": 799,
         "colors": ["Silver", "Space Gray"],
         "storage_options": ["128GB", "256GB", "512GB", "1TB", "2TB"],
-        "release_date": "2021-05-21"
+        "release_date": "2021-05-21",
+        "img": "static/img/product_1/product-phone-14-pro.jpg",
+        "alt": "product-phone-14-pro"
       },
       {
         "id": 6,
@@ -64,7 +68,9 @@
         "price": 399,
         "colors": ["Midnight", "Starlight", "Green", "Blue", "Red"],
         "sizes": ["41mm", "45mm"],
-        "release_date": "2022-09-16"
+        "release_date": "2022-09-16",
+        "img": "static/img/cart_product_pics/product-IWatch.jpg",
+        "alt": "product-phone-14-pro"
       },
       {
         "id": 7,
@@ -73,7 +79,9 @@
         "category": "Earbuds",
         "price": 249,
         "colors": ["White"],
-        "release_date": "2022-10-28"
+        "release_date": "2022-10-28",
+        "img": "static/img/cart_product_pics/product-airpods.jpg",
+        "alt": "product-phone-14-pro"
       }
     ]
   }
