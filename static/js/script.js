@@ -36,6 +36,8 @@ function clearCart() {
   }
 }
 
+loadProductsFromLocalStorage();
+
 // //onStart the page:
 // document.addEventListener("DOMContentLoaded", () => {
 //   // Initially load products from local storage
@@ -308,6 +310,8 @@ function loadProductsFromLocalStorage() {
   } else {
     alert("No products found in local storage!");
   }
+
+  updateCartList();
 }
 
 function itemToTheCartBuilder(product) {
